@@ -10,6 +10,9 @@ const IndexPage: FC = () => (
     <Button as={Link} to="/find-the-note">
       Find the Note
     </Button>
+    <Button as={Link} to="/fretboard-reference">
+      Fretboard Reference
+    </Button>
     <Button as={Link} to="/settings">
       Settings
     </Button>

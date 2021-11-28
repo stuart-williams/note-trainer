@@ -24,25 +24,28 @@ const Note = chakra(Box, {
       top: "50%",
       left: "50%",
       content: `""`,
+      color: "white",
+      display: "flex",
+      alignItems: "center",
       borderRadius: "full",
       position: "absolute",
+      justifyContent: "center",
       transform: "translate(-50%, -50%)",
     },
   },
 });
 
-const frettedStyles = {
-  ":before": {
-    bg: "red.500",
-  },
-};
-
 interface Props {
   frettedNotes: INote[];
+  referenceMode?: boolean;
   onNoteClick?: (note: INote) => void;
 }
 
-const Notes: FC<Props> = ({ frettedNotes, onNoteClick = identity }) => {
+const Notes: FC<Props> = ({
+  frettedNotes,
+  referenceMode,
+  onNoteClick = identity,
+}) => {
   const fretboard = useRecoilValue(fretboardState);
   const notes = useRecoilValue(fretboardNotesState);
   const columns = fretboard.fretCount + 1;
@@ -58,7 +61,16 @@ const Notes: FC<Props> = ({ frettedNotes, onNoteClick = identity }) => {
             key={i}
             data-note={name}
             onClick={() => onNoteClick(note)}
-            sx={isFretted ? frettedStyles : undefined}
+            sx={
+              isFretted
+                ? {
+                    ":before": {
+                      bg: "red.500",
+                      content: referenceMode ? `"${note.name}"` : undefined,
+                    },
+                  }
+                : undefined
+            }
           />
         );
       })}

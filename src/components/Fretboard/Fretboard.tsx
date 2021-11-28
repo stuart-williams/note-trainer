@@ -16,14 +16,19 @@ const Board = chakra(Box, {
 
 interface Props {
   frettedNotes: INote[];
+  referenceMode?: boolean;
   onNoteClick?: (note: INote) => void;
 }
 
-const Fretboard: FC<Props> = ({ frettedNotes, onNoteClick }) => (
+const Fretboard: FC<Props> = ({ frettedNotes, referenceMode, onNoteClick }) => (
   <Board>
     <Frets />
     <Strings />
-    <Notes frettedNotes={frettedNotes} onNoteClick={onNoteClick} />
+    <Notes
+      onNoteClick={onNoteClick}
+      frettedNotes={frettedNotes}
+      referenceMode={referenceMode}
+    />
   </Board>
 );
 

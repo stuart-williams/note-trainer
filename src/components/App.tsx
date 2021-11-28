@@ -1,6 +1,7 @@
 import AppBar from "components/AppBar";
 import IndexPage from "pages";
 import FindTheNotePage from "pages/find-the-note";
+import FretboardReference from "pages/fretboard-reference";
 import NameTheNotePage from "pages/name-the-note";
 import SettingsPage from "pages/settings";
 import StatisticsPage from "pages/statistics";
@@ -16,6 +17,9 @@ const App: FC = () => (
       </Route>
       <Route path="/find-the-note">
         <FindTheNotePage />
+      </Route>
+      <Route path="/fretboard-reference">
+        <FretboardReference />
       </Route>
       <Route path="/settings">
         <SettingsPage />
