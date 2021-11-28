@@ -17,4 +17,12 @@ jobs:
         with:
           node-version: "14.x"
       - uses: bahmutov/npm-install@v1
-      - run: npm run deploy
+
+      - run: npm run build
+
+      - uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          branch: gh-pages
+          folder: build
+          clean: true
+          persist-credentials: false
