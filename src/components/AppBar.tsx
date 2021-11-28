@@ -33,10 +33,13 @@ const AppBar: FC = () => {
           />
         )}
         {location.pathname === "/" && <Title>Note Trainer</Title>}
-        {location.pathname === "/settings" && <Title>Settings</Title>}
-        {location.pathname === "/statistics" && <Title>Statistics</Title>}
         {location.pathname === "/name-the-note" && <Title>Name the Note</Title>}
         {location.pathname === "/find-the-note" && <Title>Find the Note</Title>}
+        {location.pathname === "/fretboard-reference" && (
+          <Title>Fretboard Reference</Title>
+        )}
+        {location.pathname === "/settings" && <Title>Settings</Title>}
+        {location.pathname === "/statistics" && <Title>Statistics</Title>}
       </Container>
     </Flex>
   );
