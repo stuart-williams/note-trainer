@@ -11,11 +11,11 @@ import * as config from "config";
 import { map } from "lodash";
 import React, { FC } from "react";
 import { useRecoilState } from "recoil";
-import { fretboardIdSelector, leftHandedState } from "state";
+import { fretboardIdState, leftHandedState } from "state";
 import { IFretboardId } from "types";
 
 const FretboardSelect = () => {
-  const [fretboardId, setFretboardId] = useRecoilState(fretboardIdSelector);
+  const [fretboardId, setFretboardId] = useRecoilState(fretboardIdState);
 
   const handleChange: SelectProps["onChange"] = (event) => {
     setFretboardId(event.target.value as IFretboardId);

@@ -1,7 +1,7 @@
 import { Note } from "@tonaljs/tonal";
 import * as ls from "local-storage";
 import { repeat, round, times } from "lodash";
-import { AtomEffect } from "recoil";
+import { AtomEffect, DefaultValue } from "recoil";
 
 export const localStorageEffect =
   <T,>(): AtomEffect<T> =>
@@ -13,7 +13,13 @@ export const localStorageEffect =
       setSelf(value);
     }
 
-    onSet((newValue) => ls.set<T>(key, newValue));
+    onSet((newValue) => {
+      if (newValue instanceof DefaultValue) {
+        ls.remove(key);
+      } else {
+        ls.set<T>(key, newValue);
+      }
+    });
   };
 
 export const getNoteNames = (): string[] =>
