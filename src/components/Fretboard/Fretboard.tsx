@@ -1,5 +1,6 @@
 import { Box, chakra } from "@chakra-ui/react";
 import Frets from "components/Fretboard/Frets";
+import woodSrc from "images/wood.png";
 import React, { FC } from "react";
 import { INote } from "types";
 import Notes from "./Notes";
@@ -9,7 +10,7 @@ const Board = chakra(Box, {
   baseStyle: {
     h: 220,
     position: "relative",
-    bg: "url('wood.png')",
+    bg: `#222222 url(${woodSrc})`,
   },
 });
 

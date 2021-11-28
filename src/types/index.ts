@@ -4,7 +4,7 @@ export interface INote {
   string: number;
 }
 
-export type IFretboardId = "standard-6" | "standard-4";
+export type IFretboardId = "standard-6" | "standard-4" | "open-e-6";
 
 export interface IFretboard {
   id: IFretboardId;
