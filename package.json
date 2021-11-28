@@ -7,14 +7,7 @@
     "@chakra-ui/react": "^1.6.10",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@testing-library/jest-dom": "^5.15.0",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
     "@tonaljs/tonal": "^4.6.5",
-    "@types/jest": "^27.0.3",
-    "@types/node": "^16.11.9",
-    "@types/react": "^17.0.36",
-    "@types/react-dom": "^17.0.11",
     "framer-motion": "^4",
     "local-storage": "^2.0.0",
     "lodash": "^4.17.21",
@@ -22,11 +15,23 @@
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "4.0.3",
     "react-use": "^17.3.1",
     "recoil": "^0.5.2",
-    "simplur": "^3.0.1",
-    "typescript": "^4.1.2"
+    "simplur": "^3.0.1"
+  },
+  "devDependencies": {
+    "@testing-library/react-hooks": "^7.0.2",
+    "@types/react-router-dom": "^5.3.1",
+    "gh-pages": "^3.2.3",
+    "typescript": "^4.1.2",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.9",
+    "@types/react": "^17.0.36",
+    "@types/react-dom": "^17.0.11",
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "react-scripts": "4.0.3"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -54,10 +59,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@testing-library/react-hooks": "^7.0.2",
-    "@types/react-router-dom": "^5.3.1",
-    "gh-pages": "^3.2.3"
   }
 }
