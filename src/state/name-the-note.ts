@@ -1,5 +1,5 @@
-import { shuffle } from "lodash";
 import { atom, DefaultValue, selector } from "recoil";
+import { shuffle } from "shuffle-seed";
 import { INote } from "types";
 import { localStorageEffect } from "utils";
 import { fretboardNotesState } from "./fretboard";
@@ -28,22 +28,26 @@ export const ntnGameCorrectState = atom<number>({
   effects_UNSTABLE: [localStorageEffect()],
 });
 
-const ntnShuffleIdState = atom<number>({
-  key: "ntnShuffleIdState",
-  default: 0,
+const defaultShuffleSeed = Math.random();
+
+const ntnShuffleSeedState = atom<number>({
+  key: "ntnShuffleSeedState",
+  default: defaultShuffleSeed,
+  effects_UNSTABLE: [localStorageEffect(defaultShuffleSeed)],
 });
 
 const ntnPointerState = atom<number>({
   key: "ntnPointerState",
   default: 0,
+  effects_UNSTABLE: [localStorageEffect()],
 });
 
 const ntnNotesQueueState = selector<INote[]>({
   key: "ntnNotesQueueState",
   get: ({ get }) => {
-    get(ntnShuffleIdState);
+    const seed = get(ntnShuffleSeedState);
     const notes = get(fretboardNotesState);
-    return shuffle(notes);
+    return shuffle(notes, seed);
   },
 });
 
@@ -61,7 +65,8 @@ export const ntnGameSelector = selector<INote>({
   get: ({ get }) => get(ntnActiveNoteState),
   set: ({ get, set, reset }, newValue) => {
     const shuffleNotesQueue = () => {
-      set(ntnShuffleIdState, get(ntnShuffleIdState) + 1);
+      const seed = get(ntnShuffleSeedState);
+      set(ntnShuffleSeedState, seed + Math.random());
       reset(ntnPointerState);
     };
 

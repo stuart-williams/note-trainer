@@ -4,13 +4,15 @@ import { repeat, round, times } from "lodash";
 import { AtomEffect, DefaultValue } from "recoil";
 
 export const localStorageEffect =
-  <T,>(): AtomEffect<T> =>
+  <T,>(defaultValue?: T): AtomEffect<T> =>
   ({ node, setSelf, onSet }) => {
     const key = `noteTrainer.${node.key}`;
     const value = ls.get<T>(key);
 
     if (value) {
       setSelf(value);
+    } else if (defaultValue) {
+      ls.set<T>(key, defaultValue);
     }
 
     onSet((newValue) => {
