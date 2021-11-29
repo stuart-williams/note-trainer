@@ -28,49 +28,55 @@ export const ntnGameCorrectState = atom<number>({
   effects_UNSTABLE: [localStorageEffect()],
 });
 
-const ntnQueueIdState = atom<number>({
-  key: "ntnQueueIdState",
+const ntnShuffleIdState = atom<number>({
+  key: "ntnShuffleIdState",
   default: 0,
 });
 
-const ntnQueuePointerState = atom<number>({
-  key: "ntnQueuePointerState",
+const ntnPointerState = atom<number>({
+  key: "ntnPointerState",
   default: 0,
 });
 
-export const ntnQueueState = selector<INote[]>({
-  key: "ntnQueueState",
+const ntnNotesQueueState = selector<INote[]>({
+  key: "ntnNotesQueueState",
   get: ({ get }) => {
-    get(ntnQueueIdState);
-    return shuffle(get(fretboardNotesState));
+    get(ntnShuffleIdState);
+    const notes = get(fretboardNotesState);
+    return shuffle(notes);
   },
 });
 
 export const ntnActiveNoteState = selector<INote>({
   key: "ntnActiveNoteState",
-  get: ({ get }) => get(ntnQueueState)[get(ntnQueuePointerState)],
+  get: ({ get }) => {
+    const queue = get(ntnNotesQueueState);
+    const pointer = get(ntnPointerState);
+    return queue[pointer];
+  },
 });
 
 export const ntnGameSelector = selector<INote>({
   key: "ntnGameSelector",
   get: ({ get }) => get(ntnActiveNoteState),
   set: ({ get, set, reset }, newValue) => {
-    // RESET
+    const shuffleNotesQueue = () => {
+      set(ntnShuffleIdState, get(ntnShuffleIdState) + 1);
+      reset(ntnPointerState);
+    };
+
+    // Reset game
     if (newValue instanceof DefaultValue) {
-      // Reset game stats
       reset(ntnGameAttemptsState);
       reset(ntnGameCorrectState);
-
-      // Trigger a queue reshuffle
-      set(ntnQueueIdState, get(ntnQueueIdState) + 1);
-      reset(ntnQueuePointerState);
+      shuffleNotesQueue();
       return;
     }
 
     const activeNote = get(ntnActiveNoteState);
     const isCorrect = newValue.name === activeNote.name;
 
-    // Update game and total stats
+    // Update game stats
     set(ntnGameAttemptsState, get(ntnGameAttemptsState) + 1);
     set(ntnGameCorrectState, get(ntnGameCorrectState) + Number(isCorrect));
     set(ntnTotalAttemptsState, get(ntnTotalAttemptsState) + 1);
@@ -80,17 +86,16 @@ export const ntnGameSelector = selector<INote>({
       return;
     }
 
-    // Find the next note in the queue
-    const notesQueue = get(ntnQueueState);
-    const nextPointer = get(ntnQueuePointerState) + 1;
+    const notesQueue = get(ntnNotesQueueState);
+    const nextPointer = get(ntnPointerState) + 1;
 
+    // Reached the end of the queue so reshuffle and pointer to start of queue
     if (!notesQueue[nextPointer]) {
-      // Trigger a queue reshuffle
-      set(ntnQueueIdState, get(ntnQueueIdState) + 1);
-      reset(ntnQueuePointerState);
+      shuffleNotesQueue();
       return;
     }
 
-    set(ntnQueuePointerState, nextPointer);
+    // Next note
+    set(ntnPointerState, nextPointer);
   },
 });

@@ -4,6 +4,8 @@ import { INote } from "types";
 import { getNoteNames, localStorageEffect } from "utils";
 import { fretboardNotesState } from "./fretboard";
 
+// TODO: Refactor to use pointer
+
 export const ftnNotesQueueState = atom<string[]>({
   key: "ftnNotesQueueState",
   default: shuffle(getNoteNames()),
