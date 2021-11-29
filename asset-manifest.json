@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/note-trainer/static/js/main.defe37fa.chunk.js",
-    "main.js.map": "/note-trainer/static/js/main.defe37fa.chunk.js.map",
+    "main.js": "/note-trainer/static/js/main.23cebd60.chunk.js",
+    "main.js.map": "/note-trainer/static/js/main.23cebd60.chunk.js.map",
     "runtime-main.js": "/note-trainer/static/js/runtime-main.a441dffe.js",
     "runtime-main.js.map": "/note-trainer/static/js/runtime-main.a441dffe.js.map",
-    "static/js/2.2b64d9c4.chunk.js": "/note-trainer/static/js/2.2b64d9c4.chunk.js",
-    "static/js/2.2b64d9c4.chunk.js.map": "/note-trainer/static/js/2.2b64d9c4.chunk.js.map",
+    "static/js/2.0542d2f4.chunk.js": "/note-trainer/static/js/2.0542d2f4.chunk.js",
+    "static/js/2.0542d2f4.chunk.js.map": "/note-trainer/static/js/2.0542d2f4.chunk.js.map",
     "index.html": "/note-trainer/index.html",
-    "static/js/2.2b64d9c4.chunk.js.LICENSE.txt": "/note-trainer/static/js/2.2b64d9c4.chunk.js.LICENSE.txt",
+    "static/js/2.0542d2f4.chunk.js.LICENSE.txt": "/note-trainer/static/js/2.0542d2f4.chunk.js.LICENSE.txt",
     "static/media/wood.3cf6e95a.png": "/note-trainer/static/media/wood.3cf6e95a.png"
   },
   "entrypoints": [
     "static/js/runtime-main.a441dffe.js",
-    "static/js/2.2b64d9c4.chunk.js",
-    "static/js/main.defe37fa.chunk.js"
+    "static/js/2.0542d2f4.chunk.js",
+    "static/js/main.23cebd60.chunk.js"
   ]
 }
