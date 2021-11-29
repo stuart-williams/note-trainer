@@ -28,12 +28,10 @@ export const ntnGameCorrectState = atom<number>({
   effects_UNSTABLE: [localStorageEffect()],
 });
 
-const defaultShuffleSeed = Math.random();
-
 const ntnShuffleSeedState = atom<number>({
   key: "ntnShuffleSeedState",
-  default: defaultShuffleSeed,
-  effects_UNSTABLE: [localStorageEffect(defaultShuffleSeed)],
+  default: 0,
+  effects_UNSTABLE: [localStorageEffect(Math.random())],
 });
 
 const ntnPointerState = atom<number>({

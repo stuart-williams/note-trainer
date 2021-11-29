@@ -13,6 +13,7 @@ export const localStorageEffect =
       setSelf(value);
     } else if (defaultValue) {
       ls.set<T>(key, defaultValue);
+      setSelf(defaultValue);
     }
 
     onSet((newValue) => {
