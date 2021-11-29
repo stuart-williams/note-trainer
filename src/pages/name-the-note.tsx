@@ -14,7 +14,7 @@ import { INote } from "types";
 const NameTheNotePage: FC = () => {
   const correct = useRecoilValue(ntnGameCorrectState);
   const attempts = useRecoilValue(ntnGameAttemptsState);
-  const [activeNote, updateGame] = useRecoilState(ntnGameSelector);
+  const [note, updateGame] = useRecoilState(ntnGameSelector);
   const resetGame = useResetRecoilState(ntnGameSelector);
 
   const handleAnswer = (name: string) => {
@@ -28,7 +28,7 @@ const NameTheNotePage: FC = () => {
         attempts={attempts}
         onResetGame={resetGame}
       />
-      <Fretboard frettedNotes={activeNote ? [activeNote] : []} />
+      <Fretboard frettedNotes={note ? [note] : []} />
       <Keyboard onClick={handleAnswer} />
     </VStack>
   );
