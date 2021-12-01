@@ -5,14 +5,24 @@ import React, { FC } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 const NameTheNote = loadable(
-  () => import(/* webpackChunkName: "name-the-note"*/ "pages/name-the-note"),
+  () =>
+    import(
+      /* webpackPrefetch: true */
+      /* webpackChunkName: "name-the-note"*/
+      "pages/name-the-note"
+    ),
   {
     fallback: <p>Loading...</p>,
   }
 );
 
 const FindTheNote = loadable(
-  () => import(/* webpackChunkName: "find-the-note"*/ "pages/find-the-note"),
+  () =>
+    import(
+      /* webpackPrefetch: true */
+      /* webpackChunkName: "find-the-note"*/
+      "pages/find-the-note"
+    ),
   {
     fallback: <p>Loading...</p>,
   }
@@ -21,7 +31,9 @@ const FindTheNote = loadable(
 const FretboardReference = loadable(
   () =>
     import(
-      /* webpackChunkName: "fretboard-reference"*/ "pages/fretboard-reference"
+      /* webpackPrefetch: true */
+      /* webpackChunkName: "fretboard-reference"*/
+      "pages/fretboard-reference"
     ),
   {
     fallback: <p>Loading...</p>,
@@ -29,14 +41,24 @@ const FretboardReference = loadable(
 );
 
 const Settings = loadable(
-  () => import(/* webpackChunkName: "settings"*/ "pages/settings"),
+  () =>
+    import(
+      /* webpackPrefetch: true */
+      /* webpackChunkName: "settings"*/
+      "pages/settings"
+    ),
   {
     fallback: <p>Loading...</p>,
   }
 );
 
 const Statistics = loadable(
-  () => import(/* webpackChunkName: "statistics"*/ "pages/statistics"),
+  () =>
+    import(
+      /* webpackPrefetch: true */
+      /* webpackChunkName: "statistics"*/
+      "pages/statistics"
+    ),
   {
     fallback: <p>Loading...</p>,
   }
