@@ -1,8 +1,8 @@
 {
   "name": "note-trainer",
   "version": "0.1.0",
+  "homepage": ".",
   "private": false,
-  "homepage": "https://stuart-williams.github.io/note-trainer",
   "dependencies": {
     "@chakra-ui/react": "^1.6.10",
     "@emotion/react": "^11",
