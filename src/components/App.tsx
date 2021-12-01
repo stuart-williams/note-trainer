@@ -2,7 +2,7 @@ import loadable from "@loadable/component";
 import AppBar from "components/AppBar";
 import IndexPage from "pages";
 import React, { FC } from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const NameTheNote = loadable(
   () =>
