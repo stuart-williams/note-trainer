@@ -1,27 +1,63 @@
-import { Button, SimpleGrid } from "@chakra-ui/react";
+import { Button, Container, SimpleGrid } from "@chakra-ui/react";
 import React, { FC } from "react";
-import { getNoteNames } from "utils";
 
 interface Props {
   onClick: (noteName: string) => void;
 }
 
-const Keyboard: FC<Props> = ({ onClick }) => {
-  const noteNames = getNoteNames();
+const blackKeys = [
+  {
+    end: 4,
+    start: 2,
+    note: "C#",
+  },
+  {
+    end: 6,
+    start: 4,
+    note: "D#",
+  },
+  {
+    end: 10,
+    start: 8,
+    note: "F#",
+  },
+  {
+    end: 12,
+    start: 10,
+    note: "G#",
+  },
+  {
+    end: 14,
+    start: 12,
+    note: "A#",
+  },
+];
 
-  return (
-    <SimpleGrid columns={12} gridGap={2}>
-      {noteNames.map((noteName) => (
+const whiteKeys = ["C", "D", "E", "F", "G", "A", "B"];
+
+const Keyboard: FC<Props> = ({ onClick }) => (
+  <Container maxW="container.lg" alignSelf="center">
+    <SimpleGrid columns={14} gridGap={1} mb={1}>
+      {blackKeys.map(({ start, end, note }) => (
         <Button
-          key={noteName}
+          key={note}
           colorScheme="red"
-          onClick={() => onClick(noteName)}
+          gridColumnEnd={end}
+          gridColumnStart={start}
+          onClick={() => onClick(note)}
         >
-          {noteName}
+          {note}
         </Button>
       ))}
     </SimpleGrid>
-  );
-};
+    <SimpleGrid columns={7} gridGap={1}>
+      {whiteKeys.map((note) => (
+        <Button key={note} colorScheme="blue" onClick={() => onClick(note)}>
+          {note}
+        </Button>
+      ))}
+    </SimpleGrid>
+  </Container>
+);
 
 export default Keyboard;
