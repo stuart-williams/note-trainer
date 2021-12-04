@@ -9,7 +9,7 @@ const FretboardReference: FC = () => {
 
   return (
     <VStack align="stretch" px={2}>
-      <Fretboard frettedNotes={notes} referenceMode />
+      <Fretboard activeNotes={notes} referenceMode />
     </VStack>
   );
 };

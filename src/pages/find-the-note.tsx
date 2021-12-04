@@ -9,19 +9,19 @@ import { INote } from "types";
 
 const FindTheNotePage: FC = () => {
   const targetNote = useRecoilValue(ftnNoteState);
-  const [frettedNotes, updateGame] = useRecoilState(ftnGameSelector);
+  const [activeNotes, updateGame] = useRecoilState(ftnGameSelector);
   const count = useRecoilValue(ftnCountState);
-  const remaining = count - frettedNotes.length;
+  const remaining = count - activeNotes.length;
 
   const handleNoteClick = (note: INote) => {
     if (note.name === targetNote) {
-      updateGame([...without(frettedNotes, note), note]);
+      updateGame([...without(activeNotes, note), note]);
     }
   };
 
   return (
     <VStack align="stretch" px={2}>
-      <Fretboard frettedNotes={frettedNotes} onNoteClick={handleNoteClick} />
+      <Fretboard activeNotes={activeNotes} onNoteClick={handleNoteClick} />
       <Heading alignSelf="center">
         {simplur`Find ${targetNote} in ${remaining} plac[e|es]`}
       </Heading>

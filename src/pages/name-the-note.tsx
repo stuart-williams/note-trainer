@@ -28,7 +28,7 @@ const NameTheNotePage: FC = () => {
         attempts={attempts}
         onResetGame={resetGame}
       />
-      <Fretboard frettedNotes={note ? [note] : []} />
+      <Fretboard activeNotes={note ? [note] : []} />
       <Keyboard onClick={handleAnswer} />
     </VStack>
   );

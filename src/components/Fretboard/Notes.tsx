@@ -36,13 +36,13 @@ const Note = chakra(Box, {
 });
 
 interface Props {
-  frettedNotes: INote[];
+  activeNotes: INote[];
   referenceMode?: boolean;
   onNoteClick?: (note: INote) => void;
 }
 
 const Notes: FC<Props> = ({
-  frettedNotes,
+  activeNotes,
   referenceMode,
   onNoteClick = identity,
 }) => {
@@ -54,7 +54,7 @@ const Notes: FC<Props> = ({
     <NotesGrid columns={columns}>
       {notes.map((note, i) => {
         const { id, name, string } = note;
-        const isFretted = Boolean(find(frettedNotes, { id, string }));
+        const isActive = Boolean(find(activeNotes, { id, string }));
 
         return (
           <Note
@@ -62,7 +62,7 @@ const Notes: FC<Props> = ({
             data-note={name}
             onClick={() => onNoteClick(note)}
             sx={
-              isFretted
+              isActive
                 ? {
                     ":before": {
                       bg: "red.500",
