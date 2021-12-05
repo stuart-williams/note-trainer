@@ -1,8 +1,15 @@
+import { Center, CircularProgress } from "@chakra-ui/react";
 import loadable from "@loadable/component";
 import AppBar from "components/AppBar";
 import IndexPage from "pages";
 import React, { FC } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
+
+const fallback = (
+  <Center>
+    <CircularProgress isIndeterminate />
+  </Center>
+);
 
 const NameTheNote = loadable(
   () =>
@@ -12,7 +19,7 @@ const NameTheNote = loadable(
       "pages/name-the-note"
     ),
   {
-    fallback: <p>Loading...</p>,
+    fallback,
   }
 );
 
@@ -24,7 +31,7 @@ const FindTheNote = loadable(
       "pages/find-the-note"
     ),
   {
-    fallback: <p>Loading...</p>,
+    fallback,
   }
 );
 
@@ -36,7 +43,7 @@ const FretboardReference = loadable(
       "pages/fretboard-reference"
     ),
   {
-    fallback: <p>Loading...</p>,
+    fallback,
   }
 );
 
@@ -48,7 +55,7 @@ const Settings = loadable(
       "pages/settings"
     ),
   {
-    fallback: <p>Loading...</p>,
+    fallback,
   }
 );
 
@@ -60,7 +67,7 @@ const Statistics = loadable(
       "pages/statistics"
     ),
   {
-    fallback: <p>Loading...</p>,
+    fallback,
   }
 );
 
