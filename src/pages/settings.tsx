@@ -7,6 +7,7 @@ import {
   Switch,
   VStack,
 } from "@chakra-ui/react";
+import Card from "components/Card";
 import * as config from "config";
 import { map } from "lodash";
 import React, { FC } from "react";
@@ -53,9 +54,11 @@ const LeftHandedMode = () => {
 };
 
 export const SettingsPage: FC = () => (
-  <Container as={VStack} spacing={6}>
-    <FretboardSelect />
-    <LeftHandedMode />
+  <Container>
+    <VStack as={Card} spacing={6}>
+      <FretboardSelect />
+      <LeftHandedMode />
+    </VStack>
   </Container>
 );
 

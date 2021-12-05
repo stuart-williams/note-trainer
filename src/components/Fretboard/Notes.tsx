@@ -19,8 +19,6 @@ const Note = chakra(Box, {
   baseStyle: {
     position: "relative",
     _before: {
-      h: "34px",
-      w: "34px",
       top: "50%",
       left: "50%",
       content: `""`,
@@ -30,6 +28,8 @@ const Note = chakra(Box, {
       borderRadius: "full",
       position: "absolute",
       justifyContent: "center",
+      h: { base: "24px", md: "34px" },
+      w: { base: "24px", md: "34px" },
       transform: "translate(-50%, -50%)",
     },
   },
