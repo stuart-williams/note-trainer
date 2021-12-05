@@ -4,19 +4,19 @@ import { Link } from "react-router-dom";
 
 const IndexPage: FC = () => (
   <Container as={VStack} align="stretch">
-    <Button as={Link} to="/name-the-note">
+    <Button colorScheme="blue" as={Link} to="/name-the-note">
       Name the Note
     </Button>
-    <Button as={Link} to="/find-the-note">
+    <Button colorScheme="blue" as={Link} to="/find-the-note">
       Find the Note
     </Button>
-    <Button as={Link} to="/fretboard-reference">
+    <Button colorScheme="blue" as={Link} to="/fretboard-reference">
       Fretboard Reference
     </Button>
-    <Button as={Link} to="/settings">
+    <Button colorScheme="blue" as={Link} to="/settings">
       Settings
     </Button>
-    <Button as={Link} to="/statistics">
+    <Button colorScheme="blue" as={Link} to="/statistics">
       Statistics
     </Button>
   </Container>
