@@ -10,10 +10,10 @@
     "fretboard-reference.js.map": "./static/js/fretboard-reference.df8c3fc8.chunk.js.map",
     "main.js": "./static/js/main.53338b1c.chunk.js",
     "main.js.map": "./static/js/main.53338b1c.chunk.js.map",
-    "name-the-note.js": "./static/js/name-the-note.7c33f40e.chunk.js",
-    "name-the-note.js.map": "./static/js/name-the-note.7c33f40e.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.03dce4b9.js",
-    "runtime-main.js.map": "./static/js/runtime-main.03dce4b9.js.map",
+    "name-the-note.js": "./static/js/name-the-note.309786b0.chunk.js",
+    "name-the-note.js.map": "./static/js/name-the-note.309786b0.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.c88a7915.js",
+    "runtime-main.js.map": "./static/js/runtime-main.c88a7915.js.map",
     "settings.js": "./static/js/settings.0a2582ad.chunk.js",
     "settings.js.map": "./static/js/settings.0a2582ad.chunk.js.map",
     "statistics.js": "./static/js/statistics.3f72afab.chunk.js",
@@ -36,7 +36,7 @@
     "static/media/wood.3cf6e95a.png": "./static/media/wood.3cf6e95a.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.03dce4b9.js",
+    "static/js/runtime-main.c88a7915.js",
     "static/js/9.2e2347f9.chunk.js",
     "static/js/main.53338b1c.chunk.js"
   ]
