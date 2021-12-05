@@ -6,8 +6,8 @@
     "find-the-note.js.map": "./static/js/find-the-note.e07cdb97.chunk.js.map",
     "fretboard-reference.js": "./static/js/fretboard-reference.92409380.chunk.js",
     "fretboard-reference.js.map": "./static/js/fretboard-reference.92409380.chunk.js.map",
-    "main.js": "./static/js/main.6086dcce.chunk.js",
-    "main.js.map": "./static/js/main.6086dcce.chunk.js.map",
+    "main.js": "./static/js/main.2aa15234.chunk.js",
+    "main.js.map": "./static/js/main.2aa15234.chunk.js.map",
     "name-the-note.js": "./static/js/name-the-note.57e144e9.chunk.js",
     "name-the-note.js.map": "./static/js/name-the-note.57e144e9.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.089e9551.js",
@@ -36,6 +36,6 @@
   "entrypoints": [
     "static/js/runtime-main.089e9551.js",
     "static/js/8.6462535c.chunk.js",
-    "static/js/main.6086dcce.chunk.js"
+    "static/js/main.2aa15234.chunk.js"
   ]
 }
