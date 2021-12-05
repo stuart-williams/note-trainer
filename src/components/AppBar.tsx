@@ -21,7 +21,7 @@ const AppBar: FC = (props) => {
   const location = useLocation();
 
   return (
-    <Flex {...props} h="50px" boxShadow="lg">
+    <Flex {...props} h="50px" boxShadow="sm" borderBottomWidth="1px">
       <Container as={HStack} maxW="container.xl">
         {location.pathname !== "/" && (
           <IconButton

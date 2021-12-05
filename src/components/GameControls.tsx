@@ -15,7 +15,7 @@ import { percent } from "utils";
 
 const StatBadge = chakra(Badge, {
   baseStyle: {
-    minW: "60px",
+    minW: "50px",
     fontSize: "xl",
     display: "flex",
     borderRadius: "md",
@@ -33,13 +33,18 @@ interface Props {
 const GameControls: FC<Props> = ({ correct, attempts, onResetGame }) => (
   <Container as={HStack} align="stretch" maxW="container.sm">
     <IconButton
+      variant="ghost"
       aria-label="Reset"
       onClick={onResetGame}
       icon={<Icon as={ResetIcon} boxSize="20px" />}
     />
     <HStack align="stretch" spacing={1}>
-      <StatBadge colorScheme="green">{correct}</StatBadge>
-      <StatBadge colorScheme="red">{attempts - correct}</StatBadge>
+      <StatBadge colorScheme="green" borderWidth="1px" borderColor="green.200">
+        {correct}
+      </StatBadge>
+      <StatBadge colorScheme="red" borderWidth="1px" borderColor="red.200">
+        {attempts - correct}
+      </StatBadge>
       <Flex px={2} alignItems="center">
         <Text fontWeight="bold">{percent(correct, attempts)}%</Text>
       </Flex>
