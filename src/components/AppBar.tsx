@@ -17,11 +17,11 @@ const Title = chakra(Text, {
   },
 });
 
-const AppBar: FC = () => {
+const AppBar: FC = (props) => {
   const location = useLocation();
 
   return (
-    <Flex h="50px" mb={4} boxShadow="lg">
+    <Flex {...props} h="50px" boxShadow="lg">
       <Container as={HStack} maxW="container.xl">
         {location.pathname !== "/" && (
           <IconButton
@@ -45,4 +45,4 @@ const AppBar: FC = () => {
   );
 };
 
-export default AppBar;
+export default chakra(AppBar);

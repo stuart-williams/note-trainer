@@ -53,11 +53,9 @@ const LeftHandedMode = () => {
 };
 
 export const SettingsPage: FC = () => (
-  <Container>
-    <VStack spacing={6}>
-      <FretboardSelect />
-      <LeftHandedMode />
-    </VStack>
+  <Container as={VStack} spacing={6}>
+    <FretboardSelect />
+    <LeftHandedMode />
   </Container>
 );
 

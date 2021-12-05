@@ -1,4 +1,4 @@
-import { Center, Container, Text } from "@chakra-ui/react";
+import { Center, Container, Text, chakra } from "@chakra-ui/react";
 import { Midi } from "@tonaljs/tonal";
 import { identity } from "lodash";
 import React, { FC } from "react";
@@ -13,7 +13,7 @@ interface Props {
   onClick: (noteName: string) => void;
 }
 
-const Keyboard: FC<Props> = ({ onClick }) => {
+const Keyboard: FC<Props> = ({ onClick, ...props }) => {
   const firstNote = Midi.toMidi("c4");
   const lastNote = Midi.toMidi("b4");
 
@@ -27,7 +27,7 @@ const Keyboard: FC<Props> = ({ onClick }) => {
     Midi.midiToNoteName(midiNumber, { sharps: true, pitchClass: true });
 
   return (
-    <Container maxW="container.md" alignSelf="center" h="220px">
+    <Container {...props} maxW="container.md" flex="1 1 auto">
       <Piano
         stopNote={identity}
         keyboardShortcuts={keyboardShortcuts}
@@ -52,4 +52,4 @@ const Keyboard: FC<Props> = ({ onClick }) => {
   );
 };
 
-export default Keyboard;
+export default chakra(Keyboard);

@@ -1,4 +1,4 @@
-import { Heading, VStack } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 import Fretboard from "components/Fretboard";
 import { without } from "lodash";
 import React, { FC } from "react";
@@ -20,12 +20,12 @@ const FindTheNotePage: FC = () => {
   };
 
   return (
-    <VStack align="stretch" px={2}>
+    <>
       <Fretboard activeNotes={activeNotes} onNoteClick={handleNoteClick} />
       <Heading alignSelf="center">
         {simplur`Find ${targetNote} in ${remaining} plac[e|es]`}
       </Heading>
-    </VStack>
+    </>
   );
 };
 

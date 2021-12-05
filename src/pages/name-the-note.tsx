@@ -1,4 +1,3 @@
-import { VStack } from "@chakra-ui/react";
 import Fretboard from "components/Fretboard";
 import GameControls from "components/GameControls";
 import Keyboard from "components/Keyboard";
@@ -22,15 +21,15 @@ const NameTheNotePage: FC = () => {
   };
 
   return (
-    <VStack align="stretch" px={2}>
+    <>
       <GameControls
         correct={correct}
         attempts={attempts}
         onResetGame={resetGame}
       />
       <Fretboard activeNotes={note ? [note] : []} />
-      <Keyboard onClick={handleAnswer} />
-    </VStack>
+      <Keyboard alignSelf="center" onClick={handleAnswer} />
+    </>
   );
 };
 

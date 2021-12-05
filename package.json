@@ -4,7 +4,7 @@
   "homepage": ".",
   "private": false,
   "dependencies": {
-    "@chakra-ui/react": "^1.6.10",
+    "@chakra-ui/react": "^1.7.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@loadable/component": "^5.15.0",
@@ -23,16 +23,16 @@
     "simplur": "^3.0.1"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/jest-dom": "^5.16.0",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.0.3",
     "@types/loadable__component": "^5.13.4",
-    "@types/node": "^16.11.9",
-    "@types/react": "^17.0.36",
+    "@types/node": "^16.11.11",
+    "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
-    "@types/react-router-dom": "^5.3.1",
+    "@types/react-router-dom": "^5.3.2",
     "@types/shuffle-seed": "^1.1.0",
     "react-scripts": "4.0.3",
     "typescript": "^4.1.2"

@@ -1,4 +1,4 @@
-import { Center, CircularProgress } from "@chakra-ui/react";
+import { Center, CircularProgress, Flex, VStack } from "@chakra-ui/react";
 import loadable from "@loadable/component";
 import AppBar from "components/AppBar";
 import IndexPage from "pages";
@@ -73,27 +73,29 @@ const Statistics = loadable(
 
 const App: FC = () => (
   <Router>
-    <AppBar />
-    <Switch>
-      <Route path="/name-the-note">
-        <NameTheNote />
-      </Route>
-      <Route path="/find-the-note">
-        <FindTheNote />
-      </Route>
-      <Route path="/fretboard-reference">
-        <FretboardReference />
-      </Route>
-      <Route path="/settings">
-        <Settings />
-      </Route>
-      <Route path="/statistics">
-        <Statistics />
-      </Route>
-      <Route path="/">
-        <IndexPage />
-      </Route>
-    </Switch>
+    <AppBar mb={2} />
+    <Flex as={VStack} flex="1 1 auto" align="stretch" p={2}>
+      <Switch>
+        <Route path="/name-the-note">
+          <NameTheNote />
+        </Route>
+        <Route path="/find-the-note">
+          <FindTheNote />
+        </Route>
+        <Route path="/fretboard-reference">
+          <FretboardReference />
+        </Route>
+        <Route path="/settings">
+          <Settings />
+        </Route>
+        <Route path="/statistics">
+          <Statistics />
+        </Route>
+        <Route path="/">
+          <IndexPage />
+        </Route>
+      </Switch>
+    </Flex>
   </Router>
 );
 
