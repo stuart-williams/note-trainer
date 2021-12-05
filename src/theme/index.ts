@@ -8,15 +8,6 @@ const theme = extendTheme({
       },
     },
   },
-  components: {
-    Button: {
-      variants: {
-        solid: {
-          // boxShadow: "lg",
-        },
-      },
-    },
-  },
 });
 
 export default theme;
