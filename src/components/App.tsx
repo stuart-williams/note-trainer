@@ -74,7 +74,7 @@ const Statistics = loadable(
 const App: FC = () => (
   <Router>
     <AppBar mb={2} />
-    <Flex as={VStack} flex="1 1 auto" align="stretch" p={2}>
+    <Flex as={VStack} flex="1 1 auto" align="stretch" pb={2}>
       <Switch>
         <Route path="/name-the-note">
           <NameTheNote />
