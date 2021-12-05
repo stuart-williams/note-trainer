@@ -27,7 +27,7 @@ const Keyboard: FC<Props> = ({ onClick, ...props }) => {
     Midi.midiToNoteName(midiNumber, { sharps: true, pitchClass: true });
 
   return (
-    <Container {...props} maxW="container.md" flex="1 1 auto">
+    <Container {...props} maxW="container.md" maxH="300px" flex="1 1 auto">
       <Piano
         stopNote={identity}
         keyboardShortcuts={keyboardShortcuts}
