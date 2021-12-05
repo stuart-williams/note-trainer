@@ -29,6 +29,7 @@ const Keyboard: FC<Props> = ({ onClick, ...props }) => {
   return (
     <Container
       {...props}
+      minH="80px"
       flex="1 1 auto"
       maxW="container.sm"
       maxH={{ base: "140px", md: "220px" }}
