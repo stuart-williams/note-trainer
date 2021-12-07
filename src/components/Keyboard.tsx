@@ -10,7 +10,7 @@ import { KeyboardShortcuts, Piano } from "react-piano";
 import "react-piano/dist/styles.css";
 import { useRecoilValue } from "recoil";
 import { halfNotesState } from "state";
-import { toNoteName } from "utils";
+import { midiToNoteName, toDisplayNoteName } from "utils";
 
 const noteRange = {
   first: Midi.toMidi("c4"),
@@ -54,12 +54,12 @@ interface Props {
 
 const Keyboard: FC<Props> = ({ onClick, ...props }) => {
   const halfNotes = useRecoilValue(halfNotesState);
-  const notesMap = useRef<{ [midi: number]: string }>({});
+  const notes = useRef<{ [midi: number]: string }>({});
 
-  const midiToNoteName = (midi: number) => {
-    const noteName = notesMap.current[midi] || toNoteName(midi, halfNotes);
-    notesMap.current[midi] = noteName;
-    return noteName;
+  const displayName = (midi: number) => {
+    const name = notes.current[midi] || toDisplayNoteName(midi, halfNotes);
+    notes.current[midi] = name;
+    return name;
   };
 
   return (
@@ -68,11 +68,9 @@ const Keyboard: FC<Props> = ({ onClick, ...props }) => {
         stopNote={identity}
         noteRange={noteRange}
         keyboardShortcuts={shortcuts}
-        playNote={(midiNumber: number) =>
-          onClick(toNoteName(midiNumber, halfNotes))
-        }
+        playNote={(midiNumber: number) => onClick(midiToNoteName(midiNumber))}
         renderNoteLabel={({ midiNumber }: { midiNumber: number }) => {
-          const noteName = midiToNoteName(midiNumber);
+          const noteName = displayName(midiNumber);
           const blackKey = Note.enharmonic(noteName) !== noteName;
 
           return (

@@ -1,7 +1,7 @@
 import { atom, DefaultValue, selector } from "recoil";
 import { shuffle } from "shuffle-seed";
 import { INote } from "types";
-import { localStorageEffect, isEnharmonicEquivalent } from "utils";
+import { localStorageEffect } from "utils";
 import { fretboardNotesState } from "./fretboard";
 
 export const ntnTotalAttemptsState = atom<number>({
@@ -86,7 +86,7 @@ export const ntnGameSelector = selector<INote>({
     }
 
     const note = get(ntnNoteState);
-    const isCorrect = isEnharmonicEquivalent(newValue.name, note.name);
+    const isCorrect = newValue.name === note.name;
 
     // Update game stats
     set(ntnGameAttemptsState, get(ntnGameAttemptsState) + 1);

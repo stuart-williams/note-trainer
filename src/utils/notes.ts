@@ -11,7 +11,7 @@ export const midiToNoteName = (midiNumber: number): string =>
 export const isEnharmonicEquivalent = (a: string, b: string): boolean =>
   a === b || Note.enharmonic(a) === b;
 
-export const toNoteName = (
+export const toDisplayNoteName = (
   note: string | number,
   halfNotes: IHalfNotes = "sharps"
 ): string => {
