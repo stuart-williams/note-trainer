@@ -14,3 +14,5 @@ export interface IFretboard {
   fretCount: number;
   fretMarkers: number[];
 }
+
+export type IHalfNotes = "random" | "sharps" | "flats";

@@ -1,56 +1,84 @@
-import { Center, Container, Text, chakra } from "@chakra-ui/react";
-import { Midi } from "@tonaljs/tonal";
+import {
+  chakra,
+  Container as ContainerComponent,
+  Text,
+} from "@chakra-ui/react";
+import { Midi, Note } from "@tonaljs/tonal";
 import { identity } from "lodash";
-import React, { FC } from "react";
+import React, { FC, useRef } from "react";
 import { KeyboardShortcuts, Piano } from "react-piano";
 import "react-piano/dist/styles.css";
+import { useRecoilValue } from "recoil";
+import { halfNotesState } from "state";
+import { toNoteName } from "utils";
 
-interface LabelArgs {
-  midiNumber: number;
-}
+const noteRange = {
+  first: Midi.toMidi("c4"),
+  last: Midi.toMidi("b4"),
+};
+
+const shortcuts = KeyboardShortcuts.create({
+  firstNote: noteRange.first,
+  lastNote: noteRange.last,
+  keyboardConfig: KeyboardShortcuts.HOME_ROW,
+});
+
+const Container = chakra(ContainerComponent, {
+  baseStyle: {
+    minH: "100px",
+    flex: "1 1 auto",
+    maxW: "container.sm",
+    maxH: {
+      base: "140px",
+      md: "220px",
+    },
+  },
+});
+
+const NoteLabel = chakra(Text, {
+  baseStyle: {
+    userSelect: "none",
+    fontWeight: "bold",
+    textAlign: "center",
+    p: {
+      base: 0,
+      sm: 1,
+      md: 2,
+    },
+  },
+});
 
 interface Props {
   onClick: (noteName: string) => void;
 }
 
 const Keyboard: FC<Props> = ({ onClick, ...props }) => {
-  const firstNote = Midi.toMidi("c4");
-  const lastNote = Midi.toMidi("b4");
+  const halfNotes = useRecoilValue(halfNotesState);
+  const notesMap = useRef<{ [midi: number]: string }>({});
 
-  const keyboardShortcuts = KeyboardShortcuts.create({
-    firstNote,
-    lastNote,
-    keyboardConfig: KeyboardShortcuts.HOME_ROW,
-  });
-
-  const midiToNoteName = (midiNumber: number): string =>
-    Midi.midiToNoteName(midiNumber, { sharps: true, pitchClass: true });
+  const midiToNoteName = (midi: number) => {
+    const noteName = notesMap.current[midi] || toNoteName(midi, halfNotes);
+    notesMap.current[midi] = noteName;
+    return noteName;
+  };
 
   return (
-    <Container
-      {...props}
-      minH="80px"
-      flex="1 1 auto"
-      maxW="container.sm"
-      maxH={{ base: "140px", md: "220px" }}
-    >
+    <Container {...props}>
       <Piano
         stopNote={identity}
-        keyboardShortcuts={keyboardShortcuts}
-        noteRange={{ first: firstNote, last: lastNote }}
-        playNote={(midi: number) => onClick(midiToNoteName(midi))}
-        renderNoteLabel={(args: LabelArgs) => {
-          const noteName = midiToNoteName(args.midiNumber);
+        noteRange={noteRange}
+        keyboardShortcuts={shortcuts}
+        playNote={(midiNumber: number) =>
+          onClick(toNoteName(midiNumber, halfNotes))
+        }
+        renderNoteLabel={({ midiNumber }: { midiNumber: number }) => {
+          const noteName = midiToNoteName(midiNumber);
+          const blackKey = Note.enharmonic(noteName) !== noteName;
 
           return (
-            <Center p={{ base: 0, sm: 1, md: 2 }}>
-              <Text
-                fontWeight="bold"
-                color={noteName.includes("#") ? "white" : "black"}
-              >
-                {noteName}
-              </Text>
-            </Center>
+            <NoteLabel color={blackKey ? "white" : "black"}>
+              {noteName}
+            </NoteLabel>
           );
         }}
       />

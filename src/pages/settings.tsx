@@ -2,8 +2,10 @@ import {
   Container,
   FormControl,
   FormLabel,
+  HStack,
+  Radio,
+  RadioGroup,
   Select,
-  SelectProps,
   Switch,
   VStack,
 } from "@chakra-ui/react";
@@ -12,20 +14,19 @@ import * as config from "config";
 import { map } from "lodash";
 import React, { FC } from "react";
 import { useRecoilState } from "recoil";
-import { fretboardIdState, leftHandedState } from "state";
-import { IFretboardId } from "types";
+import { fretboardIdState, halfNotesState, leftHandedState } from "state";
+import { IFretboardId, IHalfNotes } from "types";
 
 const FretboardSelect = () => {
-  const [fretboardId, setFretboardId] = useRecoilState(fretboardIdState);
-
-  const handleChange: SelectProps["onChange"] = (event) => {
-    setFretboardId(event.target.value as IFretboardId);
-  };
+  const [value, setValue] = useRecoilState(fretboardIdState);
 
   return (
     <FormControl>
       <FormLabel>Fretboard</FormLabel>
-      <Select value={fretboardId} onChange={handleChange}>
+      <Select
+        value={value}
+        onChange={(event) => setValue(event.target.value as IFretboardId)}
+      >
         {map(config.fretboards, (fretboard) => (
           <option key={fretboard.id} value={fretboard.id}>
             {fretboard.name}
@@ -36,19 +37,36 @@ const FretboardSelect = () => {
   );
 };
 
-const LeftHandedMode = () => {
-  const [leftHanded, setLeftHanded] = useRecoilState(leftHandedState);
+const LeftHanded = () => {
+  const [isChecked, setChecked] = useRecoilState(leftHandedState);
 
   return (
-    <FormControl display="flex" alignItems="center">
-      <FormLabel htmlFor="left-handed" mb="0">
-        Left Handed Mode
-      </FormLabel>
+    <FormControl>
+      <FormLabel>Left Handed</FormLabel>
       <Switch
-        id="left-handed"
-        isChecked={leftHanded}
-        onChange={(event) => setLeftHanded(event.target.checked)}
+        isChecked={isChecked}
+        onChange={(event) => setChecked(event.target.checked)}
       />
+    </FormControl>
+  );
+};
+
+const HalfNotes = () => {
+  const [value, setValue] = useRecoilState(halfNotesState);
+
+  return (
+    <FormControl>
+      <FormLabel>Half Notes</FormLabel>
+      <RadioGroup
+        value={value}
+        onChange={(value) => setValue(value as IHalfNotes)}
+      >
+        <HStack>
+          <Radio value="sharps">Sharps</Radio>
+          <Radio value="flats">Flats</Radio>
+          <Radio value="random">Random</Radio>
+        </HStack>
+      </RadioGroup>
     </FormControl>
   );
 };
@@ -57,7 +75,8 @@ export const SettingsPage: FC = () => (
   <Container>
     <VStack as={Card} spacing={6}>
       <FretboardSelect />
-      <LeftHandedMode />
+      <LeftHanded />
+      <HalfNotes />
     </VStack>
   </Container>
 );

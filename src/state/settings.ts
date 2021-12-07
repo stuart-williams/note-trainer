@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { IFretboardId } from "types";
+import { IFretboardId, IHalfNotes } from "types";
 import { localStorageEffect } from "utils";
 
 export const fretboardIdState = atom<IFretboardId>({
@@ -11,5 +11,11 @@ export const fretboardIdState = atom<IFretboardId>({
 export const leftHandedState = atom<boolean>({
   key: "leftHandedState",
   default: false,
+  effects_UNSTABLE: [localStorageEffect()],
+});
+
+export const halfNotesState = atom<IHalfNotes>({
+  key: "halfNotesState",
+  default: "sharps",
   effects_UNSTABLE: [localStorageEffect()],
 });
