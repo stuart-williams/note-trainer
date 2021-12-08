@@ -54,31 +54,34 @@ interface Props {
 
 const Keyboard: FC<Props> = ({ onClick, ...props }) => {
   const halfNotes = useRecoilValue(halfNotesState);
-  const notes = useRef<{ [midi: number]: string }>({});
 
-  const displayName = (midi: number) => {
-    const name = notes.current[midi] || toDisplayNoteName(midi, halfNotes);
-    notes.current[midi] = name;
-    return name;
+  /**
+   * renderNoteLabel is called on mouse over for some reason so
+   * cache `[midi]: noteName` so we don't randomly switch between
+   * sharps and flats when halfNotes = "random"
+   */
+  const cache = useRef<{ [midi: number]: string }>({});
+
+  const renderNoteLabel = ({ midiNumber: midi }: { midiNumber: number }) => {
+    const nameName = cache.current[midi] || toDisplayNoteName(midi, halfNotes);
+    cache.current[midi] = nameName;
+    const isBlackKey = Note.enharmonic(nameName) !== nameName;
+
+    return (
+      <NoteLabel color={isBlackKey ? "white" : "black"}>{nameName}</NoteLabel>
+    );
   };
+
+  const handleClick = (midi: number) => onClick(midiToNoteName(midi));
 
   return (
     <Container {...props}>
       <Piano
         stopNote={identity}
         noteRange={noteRange}
+        playNote={handleClick}
         keyboardShortcuts={shortcuts}
-        playNote={(midiNumber: number) => onClick(midiToNoteName(midiNumber))}
-        renderNoteLabel={({ midiNumber }: { midiNumber: number }) => {
-          const noteName = displayName(midiNumber);
-          const blackKey = Note.enharmonic(noteName) !== noteName;
-
-          return (
-            <NoteLabel color={blackKey ? "white" : "black"}>
-              {noteName}
-            </NoteLabel>
-          );
-        }}
+        renderNoteLabel={renderNoteLabel}
       />
     </Container>
   );

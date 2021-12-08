@@ -21,7 +21,6 @@ const Note = chakra(Box, {
     _before: {
       top: "50%",
       left: "50%",
-      content: `""`,
       color: "white",
       display: "flex",
       alignItems: "center",
@@ -37,15 +36,10 @@ const Note = chakra(Box, {
 
 interface Props {
   activeNotes: INote[];
-  referenceMode?: boolean;
   onNoteClick?: (note: INote) => void;
 }
 
-const Notes: FC<Props> = ({
-  activeNotes,
-  referenceMode,
-  onNoteClick = identity,
-}) => {
+const Notes: FC<Props> = ({ activeNotes, onNoteClick = identity }) => {
   const fretboard = useRecoilValue(fretboardState);
   const notes = useRecoilValue(fretboardNotesState);
   const columns = fretboard.fretCount + 1;
@@ -53,20 +47,19 @@ const Notes: FC<Props> = ({
   return (
     <NotesGrid columns={columns}>
       {notes.map((note, i) => {
-        const { id, name, string } = note;
-        const isActive = Boolean(find(activeNotes, { id, string }));
+        const activeNote = find(activeNotes, note);
+        const content = activeNote?.displayName || "";
 
         return (
           <Note
             key={i}
-            data-note={name}
             onClick={() => onNoteClick(note)}
             sx={
-              isActive
+              activeNote
                 ? {
                     ":before": {
                       bg: "red.500",
-                      content: referenceMode ? `"${note.name}"` : undefined,
+                      content: `"${content}"`,
                     },
                   }
                 : undefined
