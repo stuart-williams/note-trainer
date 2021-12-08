@@ -1,34 +1,35 @@
-/* eslint-disable  @typescript-eslint/ban-ts-comment, @typescript-eslint/no-explicit-any */
+/* eslint-disable  @typescript-eslint/ban-ts-comment, @typescript-eslint/no-explicit-any, prefer-rest-params */
 
 import React, { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useLocation } from "react-router";
-import { useMount } from "react-use";
 
 const Analytics: FC = () => {
   const win = window as any; // @ts-ignore
   const { pathname } = useLocation();
 
-  useMount(() => {
-    win.dataLayer = win.dataLayer || [];
-    win.dataLayer.push(["js", new Date()]);
-    win.dataLayer.push(["config", "G-JDKSFDYP9M"]);
-  });
-
   useEffect(() => {
-    win.dataLayer.push({ event: "pageView", pathname });
+    if (win.gtag) {
+      win.gtag({ event: "page_view", path: pathname });
+    }
   }, [pathname]);
-
-  if (process.env.NODE_ENV !== "production") {
-    return null;
-  }
 
   return (
     <Helmet>
-      <script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-JDKSFDYP9M"
-      />
+      {process.env.NODE_ENV === "production" && (
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-JDKSFDYP9M"
+        />
+      )}
+      <script>{`
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-JDKSFDYP9M");
+    `}</script>
     </Helmet>
   );
 };
