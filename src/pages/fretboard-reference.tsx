@@ -1,12 +1,24 @@
 import Fretboard from "components/Fretboard";
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import { useRecoilValue } from "recoil";
-import { fretboardNotesState } from "state";
+import { fretboardNotesState, halfNotesState } from "state";
+import { INote } from "types";
+import { toDisplayNoteName } from "utils";
 
 const FretboardReference: FC = () => {
+  const halfNotes = useRecoilValue(halfNotesState);
   const notes = useRecoilValue(fretboardNotesState);
 
-  return <Fretboard activeNotes={notes} referenceMode />;
+  const activeNotes = useMemo<INote[]>(
+    () =>
+      notes.map((note) => ({
+        ...note,
+        displayName: toDisplayNoteName(note.name, halfNotes),
+      })),
+    [halfNotes]
+  );
+
+  return <Fretboard activeNotes={activeNotes} />;
 };
 
 export default FretboardReference;
