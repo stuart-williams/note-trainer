@@ -16,6 +16,6 @@ export const leftHandedState = atom<boolean>({
 
 export const halfNotesState = atom<IHalfNotes>({
   key: "halfNotesState",
-  default: "sharps",
+  default: "random",
   effects_UNSTABLE: [localStorageEffect()],
 });

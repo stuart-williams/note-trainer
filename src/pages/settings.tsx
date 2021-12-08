@@ -62,9 +62,9 @@ const HalfNotes = () => {
         onChange={(value) => setValue(value as IHalfNotes)}
       >
         <HStack>
+          <Radio value="random">Random</Radio>
           <Radio value="sharps">Sharps</Radio>
           <Radio value="flats">Flats</Radio>
-          <Radio value="random">Random</Radio>
         </HStack>
       </RadioGroup>
     </FormControl>
