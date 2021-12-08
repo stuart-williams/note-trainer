@@ -7,7 +7,7 @@ import { useMount } from "react-use";
 
 const Analytics: FC = () => {
   const win = window as any; // @ts-ignore
-  const { pathname, search } = useLocation();
+  const { pathname } = useLocation();
 
   useMount(() => {
     win.dataLayer = win.dataLayer || [];
@@ -16,8 +16,7 @@ const Analytics: FC = () => {
   });
 
   useEffect(() => {
-    win.dataLayer.push(["set", "page", pathname + search]);
-    win.dataLayer.push(["send", "pageview"]);
+    win.dataLayer.push({ event: "pageView", pathname });
   }, [pathname]);
 
   if (process.env.NODE_ENV !== "production") {
