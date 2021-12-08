@@ -17,7 +17,11 @@ const Title = chakra(Text, {
   },
 });
 
-const AppBar: FC = (props) => {
+interface Props {
+  title?: string;
+}
+
+const AppBar: FC<Props> = ({ title, ...props }) => {
   const location = useLocation();
 
   return (
@@ -32,14 +36,7 @@ const AppBar: FC = (props) => {
             icon={<Icon as={BackIcon} boxSize="20px" />}
           />
         )}
-        {location.pathname === "/" && <Title>Note Trainer</Title>}
-        {location.pathname === "/name-the-note" && <Title>Name the Note</Title>}
-        {location.pathname === "/find-the-note" && <Title>Find the Note</Title>}
-        {location.pathname === "/fretboard-reference" && (
-          <Title>Fretboard Reference</Title>
-        )}
-        {location.pathname === "/settings" && <Title>Settings</Title>}
-        {location.pathname === "/statistics" && <Title>Statistics</Title>}
+        {title && <Title>{title}</Title>}
       </Container>
     </Flex>
   );

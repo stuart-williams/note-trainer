@@ -1,6 +1,6 @@
-import { Center, CircularProgress, Flex, VStack } from "@chakra-ui/react";
+import { Center, CircularProgress } from "@chakra-ui/react";
 import loadable from "@loadable/component";
-import AppBar from "components/AppBar";
+import Layout from "components/Layout";
 import IndexPage from "pages";
 import React, { FC } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
@@ -73,29 +73,38 @@ const Statistics = loadable(
 
 const App: FC = () => (
   <Router>
-    <AppBar mb={4} />
-    <Flex as={VStack} flex="1 1 auto" align="stretch" pb={2}>
-      <Switch>
-        <Route path="/name-the-note">
+    <Switch>
+      <Route path="/name-the-note">
+        <Layout title="Name the Note">
           <NameTheNote />
-        </Route>
-        <Route path="/find-the-note">
+        </Layout>
+      </Route>
+      <Route path="/find-the-note">
+        <Layout title="Find the Note">
           <FindTheNote />
-        </Route>
-        <Route path="/fretboard-reference">
+        </Layout>
+      </Route>
+      <Route path="/fretboard-reference">
+        <Layout title="Fretboard Reference">
           <FretboardReference />
-        </Route>
-        <Route path="/settings">
+        </Layout>
+      </Route>
+      <Route path="/settings">
+        <Layout title="Settings">
           <Settings />
-        </Route>
-        <Route path="/statistics">
+        </Layout>
+      </Route>
+      <Route path="/statistics">
+        <Layout title="Statistics">
           <Statistics />
-        </Route>
-        <Route path="/">
+        </Layout>
+      </Route>
+      <Route path="/">
+        <Layout>
           <IndexPage />
-        </Route>
-      </Switch>
-    </Flex>
+        </Layout>
+      </Route>
+    </Switch>
   </Router>
 );
 
