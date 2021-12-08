@@ -1,6 +1,6 @@
 import { Center, CircularProgress } from "@chakra-ui/react";
 import loadable from "@loadable/component";
-import Layout from "components/Layout";
+import Page from "components/Page";
 import IndexPage from "pages";
 import React, { FC } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
@@ -75,34 +75,34 @@ const App: FC = () => (
   <Router>
     <Switch>
       <Route path="/name-the-note">
-        <Layout title="Name the Note">
+        <Page title="Name the Note">
           <NameTheNote />
-        </Layout>
+        </Page>
       </Route>
       <Route path="/find-the-note">
-        <Layout title="Find the Note">
+        <Page title="Find the Note">
           <FindTheNote />
-        </Layout>
+        </Page>
       </Route>
       <Route path="/fretboard-reference">
-        <Layout title="Fretboard Reference">
+        <Page title="Fretboard Reference">
           <FretboardReference />
-        </Layout>
+        </Page>
       </Route>
       <Route path="/settings">
-        <Layout title="Settings">
+        <Page title="Settings">
           <Settings />
-        </Layout>
+        </Page>
       </Route>
       <Route path="/statistics">
-        <Layout title="Statistics">
+        <Page title="Statistics">
           <Statistics />
-        </Layout>
+        </Page>
       </Route>
       <Route path="/">
-        <Layout>
+        <Page>
           <IndexPage />
-        </Layout>
+        </Page>
       </Route>
     </Switch>
   </Router>

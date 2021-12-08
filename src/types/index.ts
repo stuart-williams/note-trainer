@@ -1,3 +1,15 @@
+interface PageViewEvent {
+  event: "pageView";
+  pageTitle: string;
+  pageLocation: string;
+}
+
+declare global {
+  interface Window {
+    dataLayer: PageViewEvent[];
+  }
+}
+
 export type IFretboardId = "standard-6" | "standard-4" | "open-e-6";
 
 export type IHalfNotes = "random" | "sharps" | "flats";
