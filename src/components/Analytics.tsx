@@ -10,7 +10,7 @@ const Analytics: FC = () => {
 
   useEffect(() => {
     if (win.gtag) {
-      win.gtag({ event: "page_view", path: pathname });
+      win.gtag({ event: "page_view", page: pathname });
     }
   }, [pathname]);
 
