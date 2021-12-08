@@ -21,7 +21,7 @@ interface Props {
   title?: string;
 }
 
-const AppBar: FC<Props> = ({ title, ...props }) => {
+const AppBar: FC<Props> = ({ title = "Note Trainer", ...props }) => {
   const location = useLocation();
 
   return (
