@@ -1,5 +1,5 @@
 interface PageViewEvent {
-  event: "pageView";
+  event: "virtualPageView";
   pageTitle: string;
   pageLocation: string;
 }

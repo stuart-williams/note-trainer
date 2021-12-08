@@ -17,7 +17,7 @@ const Page: FC<Props> = ({ title: titleProp, children }) => {
 
   useEffect(() => {
     window.dataLayer.push({
-      event: "pageView",
+      event: "virtualPageView",
       pageTitle: title,
       pageLocation: window.location.href,
     });
