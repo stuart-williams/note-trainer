@@ -7,18 +7,18 @@ interface Props {
   title?: string;
 }
 
-const Page: FC<Props> = ({ title: titleProp, children }) => {
+const Page: FC<Props> = ({ title, children }) => {
   const location = useLocation();
-  const title = `Note Trainer${titleProp ? ` | ${titleProp}` : ""}`;
+  const pageTitle = `Note Trainer${title ? ` | ${title}` : ""}`;
 
   useEffect(() => {
-    document.title = title;
-  }, [title]);
+    document.title = pageTitle;
+  }, [pageTitle]);
 
   useEffect(() => {
     window.dataLayer.push({
       event: "virtualPageView",
-      pageTitle: title,
+      pageTitle,
       pageLocation: window.location.href,
     });
   }, [location.pathname]);
