@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 **Describe the fretboard*
-A clear and concise description e.g.
+A clear and concise description of the fretboard e.g.
 
 Instrument - 6 String Guitar
 Tuning - Drop D
