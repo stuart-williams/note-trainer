@@ -9,13 +9,37 @@ export const fretboards: Record<IFretboardId, IFretboard> = {
     name: "6 String Guitar - Standard Tuning",
     tuning: ["E", "A", "D", "G", "B", "E"].reverse(),
   },
-  "open-e-6": {
+  "e-flat": {
     fretCount: 12,
-    id: "open-e-6",
+    id: "e-flat",
+    fretMarkers: [3, 5, 7, 9, 12],
+    guages: [6, 5, 4, 3, 2, 1].reverse(),
+    name: "6 String Guitar - E Flat",
+    tuning: ["D#", "G#", "C#", "F#", "A#", "D#"].reverse(),
+  },
+  "open-e": {
+    fretCount: 12,
+    id: "open-e",
     fretMarkers: [3, 5, 7, 9, 12],
     guages: [6, 5, 4, 3, 2, 1].reverse(),
     name: "6 String Guitar - Open E",
     tuning: ["E", "B", "E", "G#", "B", "E"].reverse(),
+  },
+  "dad-gad": {
+    fretCount: 12,
+    id: "dad-gad",
+    fretMarkers: [3, 5, 7, 9, 12],
+    guages: [6, 5, 4, 3, 2, 1].reverse(),
+    name: "6 String Guitar - Dad-Gad",
+    tuning: ["D", "A", "D", "G", "A", "D"].reverse(),
+  },
+  "standard-7": {
+    fretCount: 12,
+    id: "standard-7",
+    fretMarkers: [3, 5, 7, 9, 12],
+    guages: [7, 6, 5, 4, 3, 2, 1].reverse(),
+    tuning: ["B", "E", "A", "D", "G", "B", "E"].reverse(),
+    name: "7 String Guitar - Standard Tuning",
   },
   "standard-4": {
     fretCount: 12,
@@ -24,5 +48,13 @@ export const fretboards: Record<IFretboardId, IFretboard> = {
     guages: [7, 6, 5, 4].reverse(),
     tuning: ["E", "A", "D", "G"].reverse(),
     name: "4 String Bass - Standard Tuning",
+  },
+  "standard-5": {
+    fretCount: 12,
+    id: "standard-5",
+    fretMarkers: [3, 5, 7, 9, 12],
+    guages: [8, 7, 6, 5, 4].reverse(),
+    tuning: ["B", "E", "A", "D", "G"].reverse(),
+    name: "5 String Bass - Standard Tuning",
   },
 };
