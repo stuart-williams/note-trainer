@@ -1,7 +1,7 @@
 import { Flex, VStack } from "@chakra-ui/react";
-import AppBar from "components/AppBar";
 import React, { FC, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import AppBar from "./AppBar";
 
 interface Props {
   title?: string;

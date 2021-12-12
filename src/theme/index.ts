@@ -9,7 +9,7 @@ const theme = extendTheme({
         flexDirection: "column",
       },
       body: {
-        bg: "#f5f7f9",
+        bg: "gray.50",
       },
     },
   },

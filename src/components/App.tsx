@@ -1,9 +1,9 @@
 import { Center, CircularProgress } from "@chakra-ui/react";
 import loadable from "@loadable/component";
-import Page from "components/Page";
 import IndexPage from "pages";
 import React, { FC } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import Page from "./Page";
 
 const fallback = (
   <Center>

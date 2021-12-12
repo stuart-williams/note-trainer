@@ -3,13 +3,14 @@ import {
   Container as ContainerComponent,
   Text,
 } from "@chakra-ui/react";
-import { Midi, Note } from "@tonaljs/tonal";
+import { Midi } from "@tonaljs/tonal";
 import { identity } from "lodash";
 import React, { FC, useRef } from "react";
 import { KeyboardShortcuts, Piano } from "react-piano";
 import "react-piano/dist/styles.css";
 import { useRecoilValue } from "recoil";
 import { halfNotesState } from "state";
+import "theme/react-piano.css";
 import { midiToNoteName, toDisplayNoteName } from "utils";
 
 const noteRange = {
@@ -32,19 +33,6 @@ const Container = chakra(ContainerComponent, {
   },
 });
 
-const NoteLabel = chakra(Text, {
-  baseStyle: {
-    userSelect: "none",
-    fontWeight: "bold",
-    textAlign: "center",
-    p: {
-      base: 0,
-      sm: 1,
-      md: 2,
-    },
-  },
-});
-
 interface Props {
   onClick: (noteName: string) => void;
 }
@@ -62,11 +50,8 @@ const Keyboard: FC<Props> = ({ onClick, ...props }) => {
   const renderNoteLabel = ({ midiNumber: midi }: { midiNumber: number }) => {
     const nameName = cache.current[midi] || toDisplayNoteName(midi, halfNotes);
     cache.current[midi] = nameName;
-    const isBlackKey = Note.enharmonic(nameName) !== nameName;
 
-    return (
-      <NoteLabel color={isBlackKey ? "white" : "black"}>{nameName}</NoteLabel>
-    );
+    return <Text className="ReactPiano__NoteLabel">{nameName}</Text>;
   };
 
   const handleClick = (midi: number) => onClick(midiToNoteName(midi));

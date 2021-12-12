@@ -1,5 +1,4 @@
 import { Box, chakra } from "@chakra-ui/react";
-import woodSrc from "images/wood.png";
 import React, { FC } from "react";
 import { useRecoilValue } from "recoil";
 import { fretboardState } from "state";
@@ -10,8 +9,8 @@ import Strings from "./Strings";
 
 const Board = chakra(Box, {
   baseStyle: {
+    bg: `#222222`,
     position: "relative",
-    bg: `#222222 url(${woodSrc})`,
   },
 });
 
