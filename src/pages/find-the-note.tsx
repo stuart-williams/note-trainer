@@ -1,5 +1,6 @@
 import { Heading } from "@chakra-ui/react";
 import Fretboard from "components/Fretboard";
+import RotateDevice from "components/RotateDevice";
 import { without } from "lodash";
 import React, { FC, useMemo } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -33,6 +34,7 @@ const FindTheNotePage: FC = () => {
 
   return (
     <>
+      <RotateDevice />
       <Fretboard activeNotes={activeNotes} onNoteClick={handleNoteClick} />
       <Heading alignSelf="center">
         {simplur`Find ${noteName} in ${remaining} plac[e|es]`}

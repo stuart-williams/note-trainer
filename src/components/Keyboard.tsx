@@ -25,13 +25,10 @@ const shortcuts = KeyboardShortcuts.create({
 
 const Container = chakra(ContainerComponent, {
   baseStyle: {
+    maxH: "220px",
     minH: "100px",
     flex: "1 1 auto",
     maxW: "container.sm",
-    maxH: {
-      base: "140px",
-      md: "220px",
-    },
   },
 });
 

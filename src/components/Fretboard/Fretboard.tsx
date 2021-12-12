@@ -8,10 +8,7 @@ import Strings from "./Strings";
 
 const Board = chakra(Box, {
   baseStyle: {
-    h: {
-      md: 220,
-      base: 180,
-    },
+    h: "220px",
     position: "relative",
     bg: `#222222 url(${woodSrc})`,
   },

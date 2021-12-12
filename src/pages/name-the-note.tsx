@@ -1,6 +1,7 @@
 import Fretboard from "components/Fretboard";
 import GameControls from "components/GameControls";
 import Keyboard from "components/Keyboard";
+import RotateDevice from "components/RotateDevice";
 import React, { FC } from "react";
 import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import {
@@ -22,6 +23,7 @@ const NameTheNotePage: FC = () => {
 
   return (
     <>
+      <RotateDevice />
       <GameControls
         correct={correct}
         attempts={attempts}

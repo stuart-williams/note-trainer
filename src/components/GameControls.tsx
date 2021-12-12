@@ -2,12 +2,13 @@ import {
   Badge,
   ButtonProps,
   chakra,
+  Container,
   Flex,
   HStack,
   Icon,
   IconButton,
   Text,
-  Container,
+  Tooltip,
 } from "@chakra-ui/react";
 import React, { FC } from "react";
 import { GrRefresh as ResetIcon } from "react-icons/gr";
@@ -32,12 +33,14 @@ interface Props {
 
 const GameControls: FC<Props> = ({ correct, attempts, onResetGame }) => (
   <Container as={HStack} align="stretch" maxW="container.sm">
-    <IconButton
-      variant="ghost"
-      aria-label="Reset"
-      onClick={onResetGame}
-      icon={<Icon as={ResetIcon} boxSize="20px" />}
-    />
+    <Tooltip hasArrow label="Reset Game" placement="top" openDelay={500}>
+      <IconButton
+        variant="ghost"
+        aria-label="Reset Game"
+        onClick={onResetGame}
+        icon={<Icon as={ResetIcon} boxSize="20px" />}
+      />
+    </Tooltip>
     <HStack align="stretch" spacing={1}>
       <StatBadge colorScheme="green" borderWidth="1px" borderColor="green.200">
         {correct}

@@ -9,7 +9,7 @@ interface Props {
 
 const Page: FC<Props> = ({ title, children }) => {
   const location = useLocation();
-  const pageTitle = `Note Trainer${title ? ` | ${title}` : ""}`;
+  const pageTitle = (title ? title + " - " : "") + "Note Trainer";
 
   useEffect(() => {
     document.title = pageTitle;

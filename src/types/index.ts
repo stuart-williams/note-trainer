@@ -14,9 +14,9 @@ export type IFretboardId =
   | "e-flat"
   | "open-e"
   | "dad-gad"
-  | "standard-6"
   | "standard-4"
   | "standard-5"
+  | "standard-6"
   | "standard-7";
 
 export type IHalfNotes = "random" | "sharps" | "flats";

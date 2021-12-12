@@ -1,5 +1,6 @@
 import Fretboard from "components/Fretboard";
 import Keyboard from "components/Keyboard";
+import RotateDevice from "components/RotateDevice";
 import React, { FC, useMemo, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { fretboardNotesState, halfNotesState } from "state";
@@ -31,6 +32,7 @@ const FretboardReference: FC = () => {
 
   return (
     <>
+      <RotateDevice />
       <Fretboard activeNotes={activeNotes} />
       <Keyboard alignSelf="center" onClick={setNoteFilter} />
     </>

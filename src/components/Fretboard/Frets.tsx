@@ -47,9 +47,9 @@ const Nut = chakra(Box, {
 
 const FretMarker = chakra(Circle, {
   baseStyle: {
+    h: "26px",
+    w: "26px",
     bg: "gray.200",
-    h: { base: "18px", md: "26px" },
-    w: { base: "18px", md: "26px" },
   },
 });
 
