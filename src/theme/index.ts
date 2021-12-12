@@ -13,6 +13,15 @@ const theme = extendTheme({
       },
     },
   },
+  components: {
+    Modal: {
+      baseStyle: {
+        overlay: {
+          backdropFilter: "blur(10px)",
+        },
+      },
+    },
+  },
 });
 
 export default theme;

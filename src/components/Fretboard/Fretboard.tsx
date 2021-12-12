@@ -1,14 +1,15 @@
 import { Box, chakra } from "@chakra-ui/react";
-import Frets from "components/Fretboard/Frets";
 import woodSrc from "images/wood.png";
 import React, { FC } from "react";
+import { useRecoilValue } from "recoil";
+import { fretboardState } from "state";
 import { INote } from "types";
+import Frets from "./Frets";
 import Notes from "./Notes";
 import Strings from "./Strings";
 
 const Board = chakra(Box, {
   baseStyle: {
-    h: "220px",
     position: "relative",
     bg: `#222222 url(${woodSrc})`,
   },
@@ -19,12 +20,16 @@ interface Props {
   onNoteClick?: (note: INote) => void;
 }
 
-const Fretboard: FC<Props> = ({ activeNotes, onNoteClick }) => (
-  <Board>
-    <Frets />
-    <Strings />
-    <Notes onNoteClick={onNoteClick} activeNotes={activeNotes} />
-  </Board>
-);
+const Fretboard: FC<Props> = ({ activeNotes, onNoteClick }) => {
+  const fretboard = useRecoilValue(fretboardState);
+
+  return (
+    <Board h={fretboard.h}>
+      <Frets />
+      <Strings />
+      <Notes onNoteClick={onNoteClick} activeNotes={activeNotes} />
+    </Board>
+  );
+};
 
 export default Fretboard;

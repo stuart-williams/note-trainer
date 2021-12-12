@@ -22,6 +22,7 @@ export type IFretboardId =
 export type IHalfNotes = "random" | "sharps" | "flats";
 
 export interface IFretboard {
+  h: number;
   id: IFretboardId;
   name: string;
   tuning: string[];
