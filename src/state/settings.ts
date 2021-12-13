@@ -14,6 +14,12 @@ export const leftHandedState = atom<boolean>({
   effects_UNSTABLE: [localStorageEffect()],
 });
 
+export const fretMarkersState = atom<boolean>({
+  key: "fretMarkersState",
+  default: true,
+  effects_UNSTABLE: [localStorageEffect()],
+});
+
 export const halfNotesState = atom<IHalfNotes>({
   key: "halfNotesState",
   default: "random",

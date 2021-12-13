@@ -17,7 +17,12 @@ import { map } from "lodash";
 import React, { FC } from "react";
 import { HiOutlineExternalLink as ExternalLinkIcon } from "react-icons/hi";
 import { useRecoilState } from "recoil";
-import { fretboardIdState, halfNotesState, leftHandedState } from "state";
+import {
+  fretboardIdState,
+  fretMarkersState,
+  halfNotesState,
+  leftHandedState,
+} from "state";
 import { IFretboardId, IHalfNotes } from "types";
 
 const FretboardSelect = () => {
@@ -65,6 +70,20 @@ const LeftHanded = () => {
   );
 };
 
+const FretMarkers = () => {
+  const [isChecked, setChecked] = useRecoilState(fretMarkersState);
+
+  return (
+    <FormControl>
+      <FormLabel>Fret Markers</FormLabel>
+      <Switch
+        isChecked={isChecked}
+        onChange={(event) => setChecked(event.target.checked)}
+      />
+    </FormControl>
+  );
+};
+
 const HalfNotes = () => {
   const [value, setValue] = useRecoilState(halfNotesState);
 
@@ -90,6 +109,7 @@ export const SettingsPage: FC = () => (
     <VStack as={Card} spacing={6}>
       <FretboardSelect />
       <LeftHanded />
+      <FretMarkers />
       <HalfNotes />
     </VStack>
   </Container>

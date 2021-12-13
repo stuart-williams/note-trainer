@@ -2,7 +2,7 @@ import { Box, chakra, Circle, Grid } from "@chakra-ui/react";
 import { times } from "lodash";
 import React, { FC } from "react";
 import { useRecoilValue } from "recoil";
-import { fretboardState, leftHandedState } from "state";
+import { fretboardState, fretMarkersState, leftHandedState } from "state";
 
 const FretsGrid = chakra(Grid, {
   baseStyle: {
@@ -56,6 +56,7 @@ const FretMarker = chakra(Circle, {
 const Frets: FC = () => {
   const fretboard = useRecoilValue(fretboardState);
   const leftHanded = useRecoilValue(leftHandedState);
+  const fretMarkers = useRecoilValue(fretMarkersState);
   const columns = fretboard.fretCount + 1;
 
   return (
@@ -64,6 +65,7 @@ const Frets: FC = () => {
         const fretNum = leftHanded ? fretboard.fretCount - i : i;
         const numDots = fretNum % 12 === 0 ? 2 : 1;
         const hasMarker = fretboard.fretMarkers.includes(fretNum);
+        const renderMarker = fretMarkers && hasMarker;
 
         const styles = {
           ":before": {
@@ -80,7 +82,7 @@ const Frets: FC = () => {
             key={fretNum}
             templateRows={`repeat(${numDots}, 1fr)`}
           >
-            {hasMarker && times(numDots).map((i) => <FretMarker key={i} />)}
+            {renderMarker && times(numDots).map((i) => <FretMarker key={i} />)}
           </Fret>
         );
       })}

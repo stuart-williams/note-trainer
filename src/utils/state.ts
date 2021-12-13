@@ -7,7 +7,7 @@ export const localStorageEffect =
     const key = `noteTrainer.${node.key}`;
     const value = ls.get<T>(key);
 
-    if (value) {
+    if (value !== null) {
       setSelf(value);
     } else if (defaultValue) {
       ls.set<T>(key, defaultValue);
