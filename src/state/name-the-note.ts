@@ -90,11 +90,11 @@ export const ntnGameSelector = selector<INote>({
 
     // Update game stats
     set(ntnGameAttemptsState, get(ntnGameAttemptsState) + 1);
-    set(ntnGameCorrectState, get(ntnGameCorrectState) + Number(isCorrect));
     set(ntnTotalAttemptsState, get(ntnTotalAttemptsState) + 1);
-    set(ntnTotalCorrectState, get(ntnTotalCorrectState) + Number(isCorrect));
 
     if (isCorrect) {
+      set(ntnGameCorrectState, get(ntnGameCorrectState) + 1);
+      set(ntnTotalCorrectState, get(ntnTotalCorrectState) + 1);
       // Next note
       set(ntnPointerSelector, get(ntnPointerSelector) + 1);
     }

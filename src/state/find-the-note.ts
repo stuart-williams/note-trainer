@@ -5,6 +5,9 @@ import { INote } from "types";
 import { getNoteNames, localStorageEffect } from "utils";
 import { fretboardNotesState } from "./fretboard";
 
+/**
+ * STATS
+ */
 export const ftnTotalAttemptsState = atom<number>({
   key: "ftnTotalAttemptsState",
   default: 0,
@@ -33,6 +36,33 @@ export const ftnActiveNotesState = atom<INote[]>({
   key: "ftnActiveNotesState",
   default: [],
   effects_UNSTABLE: [localStorageEffect()],
+});
+
+/**
+ * ftnStatSelector is a utility selector for updating game stats:
+ *
+ * Correct - set(ftnStatSelector, true)
+ * Incorrect - set(ftnStatSelector, false)
+ * Reset game - reset(ftnStatSelector)
+ */
+const ftnStatSelector = selector<boolean>({
+  key: "ftnStatSelector",
+  get: () => true,
+  set: ({ get, set, reset }, newValue) => {
+    if (newValue instanceof DefaultValue) {
+      reset(ftnGameCorrectState);
+      reset(ftnGameAttemptsState);
+      return;
+    }
+
+    set(ftnGameAttemptsState, get(ftnGameAttemptsState) + 1);
+    set(ftnTotalAttemptsState, get(ftnTotalAttemptsState) + 1);
+
+    if (newValue) {
+      set(ftnGameCorrectState, get(ftnGameCorrectState) + 1);
+      set(ftnTotalCorrectState, get(ftnTotalCorrectState) + 1);
+    }
+  },
 });
 
 const ftnSeedState = atom<number>({
@@ -98,21 +128,15 @@ export const ftnGameSelector = selector<INote | null>({
   set: ({ get, set, reset }, newValue) => {
     // Reset
     if (newValue instanceof DefaultValue) {
-      // Reset game stats
-      reset(ftnGameCorrectState);
-      reset(ftnGameAttemptsState);
-      // Next note
+      reset(ftnStatSelector);
       set(ftnPointerSelector, get(ftnPointerSelector) + 1);
       return;
     }
 
     // Incorrect
     if (newValue === null || newValue.name !== get(ftnNoteState)) {
-      // Next note
+      set(ftnStatSelector, false);
       set(ftnPointerSelector, get(ftnPointerSelector) + 1);
-      // Update attempt stats
-      set(ftnGameAttemptsState, get(ftnGameAttemptsState) + 1);
-      set(ftnTotalAttemptsState, get(ftnTotalAttemptsState) + 1);
       return;
     }
 
@@ -122,16 +146,10 @@ export const ftnGameSelector = selector<INote | null>({
     const nextActiveNotes = [...without(activeNotes, newValue), newValue];
 
     if (nextActiveNotes.length === count) {
-      // Next note
+      set(ftnStatSelector, true);
       set(ftnPointerSelector, get(ftnPointerSelector) + 1);
-      // Update correct stats
-      set(ftnGameCorrectState, get(ftnGameCorrectState) + 1);
-      set(ftnGameAttemptsState, get(ftnGameAttemptsState) + 1);
-      set(ftnTotalCorrectState, get(ftnTotalCorrectState) + 1);
-      set(ftnTotalAttemptsState, get(ftnTotalAttemptsState) + 1);
-      return;
+    } else {
+      set(ftnActiveNotesState, nextActiveNotes);
     }
-
-    set(ftnActiveNotesState, nextActiveNotes);
   },
 });
