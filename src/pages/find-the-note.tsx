@@ -1,12 +1,15 @@
 import { Heading } from "@chakra-ui/react";
 import Fretboard from "components/Fretboard";
+import GameControls from "components/GameControls";
 import RotateDevice from "components/RotateDevice";
-import { without } from "lodash";
 import React, { FC, useMemo } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import simplur from "simplur";
 import {
+  ftnActiveNotesState,
   ftnCountState,
+  ftnGameAttemptsState,
+  ftnGameCorrectState,
   ftnGameSelector,
   ftnNoteState,
   halfNotesState,
@@ -16,8 +19,12 @@ import { toDisplayNoteName } from "utils";
 
 const FindTheNotePage: FC = () => {
   const targetNote = useRecoilValue(ftnNoteState);
-  const [activeNotes, updateGame] = useRecoilState(ftnGameSelector);
   const halfNotes = useRecoilValue(halfNotesState);
+  const correct = useRecoilValue(ftnGameCorrectState);
+  const updateGame = useSetRecoilState(ftnGameSelector);
+  const attempts = useRecoilValue(ftnGameAttemptsState);
+  const resetGame = useResetRecoilState(ftnGameSelector);
+  const activeNotes = useRecoilValue(ftnActiveNotesState);
   const count = useRecoilValue(ftnCountState);
   const remaining = count - activeNotes.length;
 
@@ -26,18 +33,19 @@ const FindTheNotePage: FC = () => {
     [targetNote]
   );
 
-  const handleNoteClick = (note: INote) => {
-    if (note.name === targetNote) {
-      updateGame([...without(activeNotes, note), note]);
-    }
-  };
+  const handleNoteClick = (note: INote) => updateGame(note);
 
   return (
     <>
       <RotateDevice />
+      <GameControls
+        correct={correct}
+        attempts={attempts}
+        onResetGame={resetGame}
+      />
       <Fretboard activeNotes={activeNotes} onNoteClick={handleNoteClick} />
       <Heading alignSelf="center">
-        {simplur`Find ${noteName} in ${remaining} plac[e|es]`}
+        Find <mark>{noteName}</mark> in {simplur`${remaining} plac[e|es]`}
       </Heading>
     </>
   );

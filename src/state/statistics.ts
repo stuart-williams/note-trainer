@@ -1,6 +1,11 @@
 import { DefaultValue, selector } from "recoil";
 import { percent } from "utils";
 import {
+  ftnGameSelector,
+  ftnTotalAttemptsState,
+  ftnTotalCorrectState,
+} from "./find-the-note";
+import {
   ntnGameSelector,
   ntnTotalAttemptsState,
   ntnTotalCorrectState,
@@ -22,12 +27,21 @@ export const gameStatsState = selector<GameStats[]>({
       attempts: get(ntnTotalAttemptsState),
       percent: percent(get(ntnTotalCorrectState), get(ntnTotalAttemptsState)),
     },
+    {
+      game: "Find the Note",
+      correct: get(ftnTotalCorrectState),
+      attempts: get(ftnTotalAttemptsState),
+      percent: percent(get(ftnTotalCorrectState), get(ftnTotalAttemptsState)),
+    },
   ],
   set: ({ reset }, newValue) => {
     if (newValue instanceof DefaultValue) {
       reset(ntnGameSelector);
       reset(ntnTotalCorrectState);
       reset(ntnTotalAttemptsState);
+      reset(ftnGameSelector);
+      reset(ftnTotalCorrectState);
+      reset(ftnTotalAttemptsState);
     }
   },
 });
