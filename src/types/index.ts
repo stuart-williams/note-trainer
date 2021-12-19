@@ -37,3 +37,14 @@ export interface INote {
   string: number;
   displayName?: string;
 }
+
+export interface IStats {
+  percent: number;
+  correct: number;
+  attempts: number;
+}
+
+export interface IGameStats {
+  game: IStats;
+  total: IStats;
+}

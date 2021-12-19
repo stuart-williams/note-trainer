@@ -5,27 +5,25 @@ import RotateDevice from "components/RotateDevice";
 import React, { FC, useMemo } from "react";
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import simplur from "simplur";
+import { halfNotesState } from "state";
 import {
-  ftnActiveNotesState,
-  ftnCountState,
-  ftnGameAttemptsState,
-  ftnGameCorrectState,
-  ftnGameSelector,
-  ftnNoteState,
-  halfNotesState,
-} from "state";
+  activeNotesState,
+  gameProxySelector,
+  gameStatsState,
+  targetNoteCountState,
+  targetNoteState,
+} from "state/find-the-note";
 import { INote } from "types";
 import { toDisplayNoteName } from "utils";
 
 const FindTheNotePage: FC = () => {
-  const targetNote = useRecoilValue(ftnNoteState);
+  const stats = useRecoilValue(gameStatsState);
   const halfNotes = useRecoilValue(halfNotesState);
-  const correct = useRecoilValue(ftnGameCorrectState);
-  const updateGame = useSetRecoilState(ftnGameSelector);
-  const attempts = useRecoilValue(ftnGameAttemptsState);
-  const resetGame = useResetRecoilState(ftnGameSelector);
-  const activeNotes = useRecoilValue(ftnActiveNotesState);
-  const count = useRecoilValue(ftnCountState);
+  const targetNote = useRecoilValue(targetNoteState);
+  const updateGame = useSetRecoilState(gameProxySelector);
+  const count = useRecoilValue(targetNoteCountState);
+  const resetGame = useResetRecoilState(gameProxySelector);
+  const activeNotes = useRecoilValue(activeNotesState);
   const remaining = count - activeNotes.length;
 
   const noteName = useMemo(
@@ -39,9 +37,9 @@ const FindTheNotePage: FC = () => {
     <>
       <RotateDevice />
       <GameControls
-        correct={correct}
-        attempts={attempts}
         onResetGame={resetGame}
+        correct={stats.game.correct}
+        attempts={stats.game.attempts}
       />
       <Fretboard activeNotes={activeNotes} onNoteClick={handleNoteClick} />
       <Heading alignSelf="center">
