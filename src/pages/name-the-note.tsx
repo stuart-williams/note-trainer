@@ -4,30 +4,23 @@ import Keyboard from "components/Keyboard";
 import RotateDevice from "components/RotateDevice";
 import React, { FC } from "react";
 import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
-import {
-  ntnGameAttemptsState,
-  ntnGameCorrectState,
-  ntnGameSelector,
-} from "state";
+import { gameProxySelector, gameStatsState } from "state/name-the-note";
 import { INote } from "types";
 
 const NameTheNotePage: FC = () => {
-  const correct = useRecoilValue(ntnGameCorrectState);
-  const attempts = useRecoilValue(ntnGameAttemptsState);
-  const [note, updateGame] = useRecoilState(ntnGameSelector);
-  const resetGame = useResetRecoilState(ntnGameSelector);
+  const stats = useRecoilValue(gameStatsState);
+  const [note, updateGame] = useRecoilState(gameProxySelector);
+  const resetGame = useResetRecoilState(gameProxySelector);
 
-  const handleAnswer = (name: string) => {
-    updateGame({ name } as INote);
-  };
+  const handleAnswer = (name: string) => updateGame({ name } as INote);
 
   return (
     <>
       <RotateDevice />
       <GameControls
-        correct={correct}
-        attempts={attempts}
         onResetGame={resetGame}
+        correct={stats.game.correct}
+        attempts={stats.game.attempts}
       />
       <Fretboard activeNotes={note ? [note] : []} />
       <Keyboard alignSelf="center" onClick={handleAnswer} />
