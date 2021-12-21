@@ -26,7 +26,7 @@ const NameTheNotePage: FC = () => {
       />
       <Box position="relative">
         <Fretboard activeNotes={note ? [note] : []} />
-        <AnswerIndicator />
+        <AnswerIndicator indicateStates={[0]} />
       </Box>
       <Keyboard alignSelf="center" onClick={handleAnswer} />
     </>

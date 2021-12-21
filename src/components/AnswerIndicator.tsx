@@ -7,8 +7,13 @@ import {
 import { useMountedState } from "react-use";
 import { useRecoilState } from "recoil";
 import { answerIndicatorState } from "state";
+import { IBinary } from "types";
 
-const AnswerIndicator: FC = () => {
+interface Props {
+  indicateStates?: IBinary[];
+}
+
+const AnswerIndicator: FC<Props> = ({ indicateStates = [0, 1] }) => {
   const isMounted = useMountedState();
   const [indicator, setIndicator] = useRecoilState(answerIndicatorState);
 
@@ -24,13 +29,13 @@ const AnswerIndicator: FC = () => {
   }, [indicator]);
 
   return (
-    <Fade in={indicator > -1} unmountOnExit>
+    <Fade unmountOnExit in={indicateStates.includes(indicator as IBinary)}>
       <Center
         top={0}
         left={0}
         right={0}
         bottom={0}
-        opacity={0.5}
+        opacity={0.7}
         position="absolute"
         bg={!ref.current ? "red.500" : "green.500"}
       >
