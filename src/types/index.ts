@@ -10,6 +10,8 @@ declare global {
   }
 }
 
+export type IBinary = 0 | 1;
+
 export type IFretboardId =
   | "e-flat"
   | "open-e"

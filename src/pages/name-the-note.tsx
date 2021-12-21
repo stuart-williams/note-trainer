@@ -1,3 +1,5 @@
+import { Box } from "@chakra-ui/react";
+import AnswerIndicator from "components/AnswerIndicator";
 import Fretboard from "components/Fretboard";
 import GameControls from "components/GameControls";
 import Keyboard from "components/Keyboard";
@@ -22,7 +24,10 @@ const NameTheNotePage: FC = () => {
         correct={stats.game.correct}
         attempts={stats.game.attempts}
       />
-      <Fretboard activeNotes={note ? [note] : []} />
+      <Box position="relative">
+        <Fretboard activeNotes={note ? [note] : []} />
+        <AnswerIndicator />
+      </Box>
       <Keyboard alignSelf="center" onClick={handleAnswer} />
     </>
   );

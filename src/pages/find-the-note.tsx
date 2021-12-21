@@ -1,4 +1,5 @@
-import { Heading } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
+import AnswerIndicator from "components/AnswerIndicator";
 import Fretboard from "components/Fretboard";
 import GameControls from "components/GameControls";
 import RotateDevice from "components/RotateDevice";
@@ -11,7 +12,7 @@ import {
   gameProxySelector,
   gameStatsState,
   targetNoteCountState,
-  targetNoteState,
+  targetNoteState
 } from "state/find-the-note";
 import { INote } from "types";
 import { toDisplayNoteName } from "utils";
@@ -41,7 +42,10 @@ const FindTheNotePage: FC = () => {
         correct={stats.game.correct}
         attempts={stats.game.attempts}
       />
-      <Fretboard activeNotes={activeNotes} onNoteClick={handleNoteClick} />
+      <Box position="relative">
+        <Fretboard activeNotes={activeNotes} onNoteClick={handleNoteClick} />
+        <AnswerIndicator />
+      </Box>
       <Heading alignSelf="center">
         Find <mark>{noteName}</mark> in {simplur`${remaining} plac[e|es]`}
       </Heading>

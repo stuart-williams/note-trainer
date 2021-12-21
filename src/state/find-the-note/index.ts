@@ -1,6 +1,7 @@
 import { without } from "lodash";
 import { DefaultValue, selector } from "recoil";
 import { INote } from "types";
+import { answerIndicatorState } from "..";
 import {
   activeNotesState,
   pointerProxySelector,
@@ -23,6 +24,8 @@ export const gameProxySelector = selector<INote | null>({
 
     // Incorrect
     if (newValue === null || newValue.name !== get(targetNoteState)) {
+      // Indicate incorrect answer
+      set(answerIndicatorState, 0);
       // Update failed attempt stat
       set(statProxySelector, false);
       // Move on to the next note
@@ -37,6 +40,8 @@ export const gameProxySelector = selector<INote | null>({
 
     // All notes found
     if (nextActiveNotes.length === count) {
+      // Indicate correct answer
+      set(answerIndicatorState, 1);
       // Update successful attempt stat
       set(statProxySelector, true);
       // Move on to the next note

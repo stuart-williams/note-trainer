@@ -1,5 +1,6 @@
 import { DefaultValue, selector } from "recoil";
-import { INote } from "types";
+import { IBinary, INote } from "types";
+import { answerIndicatorState } from "..";
 import { pointerProxySelector, targetNoteState } from "./notes";
 import { statProxySelector } from "./statistics";
 
@@ -16,6 +17,9 @@ export const gameProxySelector = selector<INote>({
     }
 
     const isCorrect = newValue.name === get(targetNoteState).name;
+
+    // Indicate answer correctness
+    set(answerIndicatorState, Number(isCorrect) as IBinary);
 
     // Update attempt stat
     set(statProxySelector, isCorrect);
