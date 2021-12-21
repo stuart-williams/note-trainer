@@ -8,18 +8,18 @@
     "static/js/2.64f46e5b.chunk.js.map": "./static/js/2.64f46e5b.chunk.js.map",
     "static/js/3.0ae96a78.chunk.js": "./static/js/3.0ae96a78.chunk.js",
     "static/js/3.0ae96a78.chunk.js.map": "./static/js/3.0ae96a78.chunk.js.map",
-    "find-the-note.js": "./static/js/find-the-note.7960419f.chunk.js",
-    "find-the-note.js.map": "./static/js/find-the-note.7960419f.chunk.js.map",
+    "find-the-note.js": "./static/js/find-the-note.74def8f9.chunk.js",
+    "find-the-note.js.map": "./static/js/find-the-note.74def8f9.chunk.js.map",
     "fretboard-reference.css": "./static/css/fretboard-reference.87f3cb5f.chunk.css",
     "fretboard-reference.js": "./static/js/fretboard-reference.9d6124a3.chunk.js",
     "fretboard-reference.js.map": "./static/js/fretboard-reference.9d6124a3.chunk.js.map",
     "main.js": "./static/js/main.7ff65e8b.chunk.js",
     "main.js.map": "./static/js/main.7ff65e8b.chunk.js.map",
     "name-the-note.css": "./static/css/name-the-note.dde8a3de.chunk.css",
-    "name-the-note.js": "./static/js/name-the-note.c5651f7a.chunk.js",
-    "name-the-note.js.map": "./static/js/name-the-note.c5651f7a.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.8c03109d.js",
-    "runtime-main.js.map": "./static/js/runtime-main.8c03109d.js.map",
+    "name-the-note.js": "./static/js/name-the-note.e1cd7c9b.chunk.js",
+    "name-the-note.js.map": "./static/js/name-the-note.e1cd7c9b.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.65b93671.js",
+    "runtime-main.js.map": "./static/js/runtime-main.65b93671.js.map",
     "settings.js": "./static/js/settings.60416f5d.chunk.js",
     "settings.js.map": "./static/js/settings.60416f5d.chunk.js.map",
     "statistics.js": "./static/js/statistics.001d28ad.chunk.js",
@@ -38,10 +38,10 @@
     "static/js/0.e785fa74.chunk.js.LICENSE.txt": "./static/js/0.e785fa74.chunk.js.LICENSE.txt",
     "static/js/11.460e3675.chunk.js.LICENSE.txt": "./static/js/11.460e3675.chunk.js.LICENSE.txt",
     "static/js/12.51daaaf0.chunk.js.LICENSE.txt": "./static/js/12.51daaaf0.chunk.js.LICENSE.txt",
-    "static/js/name-the-note.c5651f7a.chunk.js.LICENSE.txt": "./static/js/name-the-note.c5651f7a.chunk.js.LICENSE.txt"
+    "static/js/name-the-note.e1cd7c9b.chunk.js.LICENSE.txt": "./static/js/name-the-note.e1cd7c9b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.8c03109d.js",
+    "static/js/runtime-main.65b93671.js",
     "static/js/11.460e3675.chunk.js",
     "static/js/main.7ff65e8b.chunk.js"
   ]
