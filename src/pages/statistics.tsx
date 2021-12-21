@@ -56,12 +56,13 @@ const StatisticsPage: FC = () => {
           </Tbody>
         </Table>
         <AlertDialog
+          isCentered
           isOpen={isOpen}
           onClose={onClose}
           leastDestructiveRef={cancelRef}
         >
           <AlertDialogOverlay>
-            <AlertDialogContent>
+            <AlertDialogContent mx={4}>
               <AlertDialogHeader fontSize="lg" fontWeight="bold">
                 Reset Statistics
               </AlertDialogHeader>
