@@ -9,6 +9,7 @@
     "@emotion/styled": "^11",
     "@loadable/component": "^5.15.0",
     "@tonaljs/tonal": "^4.6.5",
+    "dayjs": "^1.10.7",
     "framer-motion": "^4",
     "local-storage": "^2.0.0",
     "lodash": "^4.17.21",
