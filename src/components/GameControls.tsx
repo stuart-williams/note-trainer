@@ -1,6 +1,6 @@
 import {
   Badge,
-  ButtonProps,
+  Center,
   chakra,
   Container,
   Divider,
@@ -9,15 +9,11 @@ import {
   Icon,
   IconButton,
   Text,
-  Tooltip,
 } from "@chakra-ui/react";
+import { identity, padStart } from "lodash";
 import React, { FC } from "react";
-import {
-  IoPlay as PlayIcon,
-  IoReload as ResetIcon,
-  IoStop as StopIcon,
-} from "react-icons/io5";
-import { useInterval } from "react-use";
+import { IoPlay as PlayIcon, IoStop as StopIcon } from "react-icons/io5";
+import { useInterval, useUpdateEffect } from "react-use";
 import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import { gameRemainingState, gameTickProxySelector } from "state";
 import { percent } from "utils";
@@ -37,46 +33,56 @@ const StatBadge = chakra(Badge, {
 interface Props {
   correct: number;
   attempts: number;
-  onResetGame?: ButtonProps["onClick"];
+  onPlay?: () => void;
+  onStop?: () => void;
 }
 
-const GameControls: FC<Props> = ({ correct, attempts, onResetGame }) => {
+const GameControls: FC<Props> = ({
+  correct,
+  attempts,
+  onPlay = identity,
+  onStop = identity,
+}) => {
   const remaining = useRecoilValue(gameRemainingState);
   const [tick, nextTick] = useRecoilState(gameTickProxySelector);
   const stopGame = useResetRecoilState(gameTickProxySelector);
-  const startGame = () => nextTick(1);
+  const isPlaying = tick > 0 && remaining > 0;
+  const minutes = Math.floor(remaining / 60);
+  const seconds = remaining % 60;
+
+  const handlePlayClick = () => {
+    nextTick(1);
+    onPlay();
+  };
+
+  useUpdateEffect(() => {
+    if (!isPlaying) {
+      onStop();
+    }
+  }, [isPlaying]);
 
   useInterval(() => nextTick(tick + 1), remaining > 0 ? 1000 : null);
 
   return (
     <Container as={HStack} align="stretch" maxW="container.sm">
-      <Tooltip hasArrow label="Play" placement="top" openDelay={500}>
-        <IconButton
-          aria-label="Play"
-          onClick={startGame}
-          icon={<Icon as={PlayIcon} boxSize="20px" />}
-        />
-      </Tooltip>
-      <Flex p={2} alignItems="center">
-        <Text fontSize="lg" fontWeight="bold">
-          {remaining}
+      <IconButton
+        aria-label="Play"
+        isDisabled={isPlaying}
+        onClick={handlePlayClick}
+        icon={<Icon as={PlayIcon} boxSize="20px" />}
+      />
+      <Center w="54px">
+        <Text fontWeight="bold">
+          {padStart(String(minutes), 2, "0")}:
+          {padStart(String(seconds), 2, "0")}
         </Text>
-      </Flex>
-      <Tooltip hasArrow label="Stop" placement="top" openDelay={500}>
-        <IconButton
-          aria-label="Stop"
-          onClick={stopGame}
-          icon={<Icon as={StopIcon} boxSize="20px" />}
-        />
-      </Tooltip>
+      </Center>
+      <IconButton
+        aria-label="Stop"
+        onClick={stopGame}
+        icon={<Icon as={StopIcon} boxSize="20px" />}
+      />
       <Divider orientation="vertical" />
-      <Tooltip hasArrow label="Reset" placement="top" openDelay={500}>
-        <IconButton
-          aria-label="Reset"
-          onClick={onResetGame}
-          icon={<Icon as={ResetIcon} boxSize="20px" />}
-        />
-      </Tooltip>
       <StatBadge colorScheme="green" borderColor="green.200">
         {correct}
       </StatBadge>

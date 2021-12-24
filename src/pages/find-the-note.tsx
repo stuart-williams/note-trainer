@@ -12,7 +12,7 @@ import {
   gameProxySelector,
   gameStatsState,
   targetNoteCountState,
-  targetNoteState
+  targetNoteState,
 } from "state/find-the-note";
 import { INote } from "types";
 import { toDisplayNoteName } from "utils";
@@ -38,7 +38,7 @@ const FindTheNotePage: FC = () => {
     <>
       <RotateDevice />
       <GameControls
-        onResetGame={resetGame}
+        onStop={resetGame}
         correct={stats.game.correct}
         attempts={stats.game.attempts}
       />

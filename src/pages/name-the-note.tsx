@@ -20,7 +20,13 @@ const NameTheNotePage: FC = () => {
     <>
       <RotateDevice />
       <GameControls
-        onResetGame={resetGame}
+        onPlay={() => {
+          console.log("onPlay");
+          resetGame();
+        }}
+        onStop={() => {
+          console.log("onStop");
+        }}
         correct={stats.game.correct}
         attempts={stats.game.attempts}
       />
