@@ -10,12 +10,9 @@ import {
   IconButton,
   Text,
 } from "@chakra-ui/react";
-import { identity, padStart } from "lodash";
 import React, { FC } from "react";
 import { IoPlay as PlayIcon, IoStop as StopIcon } from "react-icons/io5";
-import { useInterval, useUpdateEffect } from "react-use";
-import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
-import { gameRemainingState, gameTickProxySelector } from "state";
+import { IGameTimer, IStats } from "types";
 import { percent } from "utils";
 
 const StatBadge = chakra(Badge, {
@@ -31,71 +28,47 @@ const StatBadge = chakra(Badge, {
 });
 
 interface Props {
-  correct: number;
-  attempts: number;
-  onPlay?: () => void;
-  onStop?: () => void;
+  stats: IStats;
+  timer: IGameTimer;
+  onPlayClick?: () => void;
+  onStopClick?: () => void;
 }
 
 const GameControls: FC<Props> = ({
-  correct,
-  attempts,
-  onPlay = identity,
-  onStop = identity,
-}) => {
-  const remaining = useRecoilValue(gameRemainingState);
-  const [tick, nextTick] = useRecoilState(gameTickProxySelector);
-  const stopGame = useResetRecoilState(gameTickProxySelector);
-  const isPlaying = tick > 0 && remaining > 0;
-  const minutes = Math.floor(remaining / 60);
-  const seconds = remaining % 60;
-
-  const handlePlayClick = () => {
-    nextTick(1);
-    onPlay();
-  };
-
-  useUpdateEffect(() => {
-    if (!isPlaying) {
-      onStop();
-    }
-  }, [isPlaying]);
-
-  useInterval(() => nextTick(tick + 1), remaining > 0 ? 1000 : null);
-
-  return (
-    <Container as={HStack} align="stretch" maxW="container.sm">
-      <IconButton
-        aria-label="Play"
-        isDisabled={isPlaying}
-        onClick={handlePlayClick}
-        icon={<Icon as={PlayIcon} boxSize="20px" />}
-      />
-      <Center w="54px">
-        <Text fontWeight="bold">
-          {padStart(String(minutes), 2, "0")}:
-          {padStart(String(seconds), 2, "0")}
-        </Text>
-      </Center>
-      <IconButton
-        aria-label="Stop"
-        onClick={stopGame}
-        icon={<Icon as={StopIcon} boxSize="20px" />}
-      />
-      <Divider orientation="vertical" />
-      <StatBadge colorScheme="green" borderColor="green.200">
-        {correct}
-      </StatBadge>
-      <StatBadge colorScheme="red" borderColor="red.200">
-        {attempts - correct}
-      </StatBadge>
-      <Flex p={2} alignItems="center">
-        <Text fontSize="lg" fontWeight="bold">
-          {percent(correct, attempts)}%
-        </Text>
-      </Flex>
-    </Container>
-  );
-};
+  stats,
+  timer,
+  onPlayClick,
+  onStopClick,
+}) => (
+  <Container as={HStack} align="stretch" maxW="container.sm">
+    <IconButton
+      aria-label="Play"
+      onClick={onPlayClick}
+      isDisabled={timer.remaining > 0}
+      icon={<Icon as={PlayIcon} boxSize="20px" />}
+    />
+    <Center w="54px">
+      <Text fontWeight="bold">{timer.display}</Text>
+    </Center>
+    <IconButton
+      aria-label="Stop"
+      onClick={onStopClick}
+      isDisabled={!timer.remaining}
+      icon={<Icon as={StopIcon} boxSize="20px" />}
+    />
+    <Divider orientation="vertical" />
+    <StatBadge colorScheme="green" borderColor="green.200">
+      {stats.correct}
+    </StatBadge>
+    <StatBadge colorScheme="red" borderColor="red.200">
+      {stats.attempts - stats.correct}
+    </StatBadge>
+    <Flex p={2} alignItems="center">
+      <Text fontSize="lg" fontWeight="bold">
+        {percent(stats.correct, stats.attempts)}%
+      </Text>
+    </Flex>
+  </Container>
+);
 
 export default GameControls;

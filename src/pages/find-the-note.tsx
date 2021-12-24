@@ -15,9 +15,10 @@ import {
   targetNoteState,
 } from "state/find-the-note";
 import { INote } from "types";
-import { toDisplayNoteName } from "utils";
+import { toDisplayNoteName, useGameTimer } from "utils";
 
 const FindTheNotePage: FC = () => {
+  const timer = useGameTimer();
   const stats = useRecoilValue(gameStatsState);
   const halfNotes = useRecoilValue(halfNotesState);
   const targetNote = useRecoilValue(targetNoteState);
@@ -38,9 +39,15 @@ const FindTheNotePage: FC = () => {
     <>
       <RotateDevice />
       <GameControls
-        onStop={resetGame}
-        correct={stats.game.correct}
-        attempts={stats.game.attempts}
+        timer={timer}
+        stats={stats.game}
+        onPlayClick={() => {
+          resetGame();
+          timer.start();
+        }}
+        onStopClick={() => {
+          timer.stop();
+        }}
       />
       <Box position="relative">
         <Fretboard activeNotes={activeNotes} onNoteClick={handleNoteClick} />

@@ -8,8 +8,10 @@ import React, { FC } from "react";
 import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import { gameProxySelector, gameStatsState } from "state/name-the-note";
 import { INote } from "types";
+import { useGameTimer } from "utils";
 
 const NameTheNotePage: FC = () => {
+  const timer = useGameTimer();
   const stats = useRecoilValue(gameStatsState);
   const [note, updateGame] = useRecoilState(gameProxySelector);
   const resetGame = useResetRecoilState(gameProxySelector);
@@ -20,15 +22,15 @@ const NameTheNotePage: FC = () => {
     <>
       <RotateDevice />
       <GameControls
-        onPlay={() => {
-          console.log("onPlay");
+        timer={timer}
+        stats={stats.game}
+        onPlayClick={() => {
           resetGame();
+          timer.start();
         }}
-        onStop={() => {
-          console.log("onStop");
+        onStopClick={() => {
+          timer.stop();
         }}
-        correct={stats.game.correct}
-        attempts={stats.game.attempts}
       />
       <Box position="relative">
         <Fretboard activeNotes={note ? [note] : []} />
