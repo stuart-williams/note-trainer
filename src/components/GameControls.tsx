@@ -3,8 +3,6 @@ import {
   Center,
   chakra,
   Container,
-  Divider,
-  Flex,
   HStack,
   Icon,
   IconButton,
@@ -13,7 +11,6 @@ import {
 import React, { FC } from "react";
 import { IoPlay as PlayIcon, IoStop as StopIcon } from "react-icons/io5";
 import { IGameTimer, IStats } from "types";
-import { percent } from "utils";
 
 const StatBadge = chakra(Badge, {
   baseStyle: {
@@ -22,6 +19,7 @@ const StatBadge = chakra(Badge, {
     display: "flex",
     borderWidth: "1px",
     borderRadius: "md",
+    boxShadow: "inner",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -44,30 +42,25 @@ const GameControls: FC<Props> = ({
     <IconButton
       aria-label="Play"
       onClick={onPlayClick}
-      isDisabled={timer.remaining > 0}
+      isDisabled={timer.isRunning}
       icon={<Icon as={PlayIcon} boxSize="20px" />}
     />
-    <Center w="54px">
-      <Text fontWeight="bold">{timer.display}</Text>
+    <Center px={4} borderRadius="md" boxShadow="inner">
+      <Text fontSize="lg" fontFamily="sans-serif">
+        {timer.display}
+      </Text>
     </Center>
     <IconButton
       aria-label="Stop"
       onClick={onStopClick}
-      isDisabled={!timer.remaining}
       icon={<Icon as={StopIcon} boxSize="20px" />}
     />
-    <Divider orientation="vertical" />
     <StatBadge colorScheme="green" borderColor="green.200">
       {stats.correct}
     </StatBadge>
     <StatBadge colorScheme="red" borderColor="red.200">
       {stats.attempts - stats.correct}
     </StatBadge>
-    <Flex p={2} alignItems="center">
-      <Text fontSize="lg" fontWeight="bold">
-        {percent(stats.correct, stats.attempts)}%
-      </Text>
-    </Flex>
   </Container>
 );
 

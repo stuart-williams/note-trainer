@@ -6,16 +6,15 @@ import { useRecoilValue } from "recoil";
 import { gameDurationState } from "state";
 import { IGameTimer } from "types";
 
-const pad = (n: number) => padStart(n + "", 2, "0");
+const pad = (n: number): string => padStart(n + "", 2, "0");
 
 const calcRemaining = (expiration: Dayjs): number =>
   Math.max(expiration.diff(dayjs()), 0);
 
-const calcdDisplay = (millis: number): string => {
-  const minutes = Math.floor(millis / 1000 / 60);
-  const seconds = Math.round((millis / 1000) % 60);
-  return `${pad(minutes)}:${pad(seconds)}`;
-};
+const calcdDisplay = (remaining: number): string =>
+  pad(Math.floor(remaining / 1000 / 60)) +
+  ":" +
+  pad(Math.floor(remaining / 1000) % 60);
 
 export const useGameTimer = (): IGameTimer => {
   const expiration = useRef<Dayjs>(dayjs());
@@ -30,7 +29,7 @@ export const useGameTimer = (): IGameTimer => {
   );
 
   return {
-    remaining,
+    isRunning: remaining > 0,
     display: calcdDisplay(remaining),
     stop: () => setRemaining(0),
     start: () => {

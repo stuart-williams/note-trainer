@@ -53,7 +53,7 @@ export interface IGameStats {
 
 export interface IGameTimer {
   display: string;
-  remaining: number;
   stop: () => void;
   start: () => void;
+  isRunning: boolean;
 }
