@@ -50,10 +50,3 @@ export interface IGameStats {
   game: IStats;
   total: IStats;
 }
-
-export interface IGameTimer {
-  display: string;
-  stop: () => void;
-  start: () => void;
-  isRunning: boolean;
-}
