@@ -32,7 +32,7 @@ const NameTheNotePage: FC = () => {
           console.log("TIMER START");
         }}
         onTimerStop={() => {
-          console.log("TIMER STOP");
+          console.log("TIMER STOP", stats.game.correct);
         }}
       />
       <Box position="relative">

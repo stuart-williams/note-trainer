@@ -19,22 +19,27 @@ interface Countdown {
     seconds: number;
     formatted: string;
   };
-  stop: () => void;
+  reset: () => void;
   isRunning: boolean;
-  start: (duration: number, onCountdownEnd?: () => void) => void;
+  start: (duration: number) => void;
 }
 
-export const useCountdown = (): Countdown => {
+interface CountdownOptions {
+  onExpire?: () => void;
+}
+
+export const useCountdown = ({
+  onExpire = identity,
+}: CountdownOptions = {}): Countdown => {
   const expiration = useRef<Dayjs>(dayjs());
   const [remaining, setRemaining] = useState(0);
-  const onCountdownEnd = useRef<() => void>(identity);
 
   useInterval(
     () => {
       const newValue = calcRemaining(expiration.current);
 
       if (!newValue) {
-        onCountdownEnd.current();
+        onExpire();
       }
 
       setRemaining(newValue);
@@ -49,11 +54,10 @@ export const useCountdown = (): Countdown => {
       seconds: Math.round(remaining / 1000),
       formatted: formatRemaining(remaining),
     },
-    start: (duration: number, callback: () => void = identity) => {
-      onCountdownEnd.current = callback;
+    start: (duration: number) => {
       expiration.current = dayjs().add(duration, "milliseconds");
       setRemaining(calcRemaining(expiration.current));
     },
-    stop: () => setRemaining(0),
+    reset: () => setRemaining(0),
   };
 };

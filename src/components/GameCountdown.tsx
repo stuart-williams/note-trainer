@@ -16,12 +16,12 @@ interface Props {
 }
 
 const GameCountdown: FC<Props> = ({ isOpen, onClose }) => {
-  const countdown = useCountdown();
+  const countdown = useCountdown({ onExpire: onClose });
   const cancelRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (isOpen) {
-      countdown.start(4000, onClose);
+      countdown.start(4000);
     }
   }, [isOpen]);
 

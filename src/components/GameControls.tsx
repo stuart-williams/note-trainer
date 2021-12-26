@@ -48,7 +48,7 @@ const GameControls: FC<Props> = ({
   onTimerStart = identity,
   onTimerStop = identity,
 }) => {
-  const countdown = useCountdown();
+  const countdown = useCountdown({ onExpire: onTimerStop });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [duration, setDuration] = useRecoilState(gameDurationState);
 
@@ -58,13 +58,13 @@ const GameControls: FC<Props> = ({
   };
 
   const handleStopClick = () => {
-    countdown.stop();
+    countdown.reset();
     onStopClick();
   };
 
   const handleCountdownStart = () => {
     onClose();
-    countdown.start(duration, onTimerStop);
+    countdown.start(duration);
     onTimerStart();
   };
 
