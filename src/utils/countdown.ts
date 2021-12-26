@@ -3,7 +3,7 @@ import { identity, padStart } from "lodash";
 import { useRef, useState } from "react";
 import { useInterval } from "react-use";
 
-const pad = (n: number): string => padStart(n + "", 2, "0");
+const pad = (n: number): string => padStart(String(n), 2, "0");
 
 const calcRemaining = (expiration: Dayjs): number =>
   Math.max(expiration.diff(dayjs()), 0);
@@ -11,7 +11,7 @@ const calcRemaining = (expiration: Dayjs): number =>
 const formatRemaining = (remaining: number): string =>
   pad(Math.floor(remaining / 60000)) +
   ":" +
-  pad(Math.ceil(remaining / 1000) % 60);
+  pad(Math.round(remaining / 1000) % 60);
 
 interface Countdown {
   remaining: {
@@ -26,18 +26,18 @@ interface Countdown {
 
 export const useCountdown = (): Countdown => {
   const expiration = useRef<Dayjs>(dayjs());
+  const [remaining, setRemaining] = useState(0);
   const onCountdownEnd = useRef<() => void>(identity);
-  const [remaining, setRemaining] = useState(calcRemaining(expiration.current));
 
   useInterval(
     () => {
-      const newRemaining = calcRemaining(expiration.current);
+      const newValue = calcRemaining(expiration.current);
 
-      if (!newRemaining) {
+      if (!newValue) {
         onCountdownEnd.current();
       }
 
-      setRemaining(newRemaining);
+      setRemaining(newValue);
     },
     remaining > 0 ? 1000 : null
   );
