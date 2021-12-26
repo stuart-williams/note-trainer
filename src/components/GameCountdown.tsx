@@ -4,9 +4,7 @@ import {
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogOverlay,
-  Heading,
   Text,
-  VStack,
 } from "@chakra-ui/react";
 import { identity } from "lodash";
 import React, { FC, useEffect, useRef } from "react";
@@ -23,7 +21,7 @@ const GameCountdown: FC<Props> = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
-      countdown.start(5000, onClose);
+      countdown.start(3000, onClose);
     }
   }, [isOpen]);
 
@@ -35,11 +33,12 @@ const GameCountdown: FC<Props> = ({ isOpen, onClose }) => {
       leastDestructiveRef={cancelRef}
     >
       <AlertDialogOverlay>
-        <AlertDialogContent mx={4}>
-          <AlertDialogHeader textAlign="center">Get Ready!</AlertDialogHeader>
-          <AlertDialogBody as={VStack} pb={4}>
-            <Text fontSize="lg">The game will start in...</Text>
-            <Heading>{countdown.remaining.seconds}</Heading>
+        <AlertDialogContent mx={4} textAlign="center">
+          <AlertDialogHeader>Get Ready!</AlertDialogHeader>
+          <AlertDialogBody pb={4}>
+            <Text fontSize="lg">
+              The game will start in... {countdown.remaining.seconds || ""}
+            </Text>
           </AlertDialogBody>
         </AlertDialogContent>
       </AlertDialogOverlay>
