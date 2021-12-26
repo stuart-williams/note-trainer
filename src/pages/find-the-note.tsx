@@ -41,12 +41,12 @@ const FindTheNotePage: FC = () => {
         stats={stats.game}
         onPlayClick={() => {
           console.log("PLAY CLICK");
-          resetGame();
         }}
         onStopClick={() => {
           console.log("STOP CLICK");
         }}
         onTimerStart={() => {
+          resetGame();
           console.log("TIMER START");
         }}
         onTimerStop={() => {

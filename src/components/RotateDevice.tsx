@@ -31,7 +31,7 @@ const RotateDevice: FC = () => {
     >
       <AlertDialogOverlay>
         <AlertDialogContent mx={4}>
-          <AlertDialogHeader fontSize="xl" fontWeight="bold" textAlign="center">
+          <AlertDialogHeader textAlign="center">
             Rotate Device
           </AlertDialogHeader>
           <AlertDialogBody as={VStack} pb={4}>

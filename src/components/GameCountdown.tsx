@@ -1,18 +1,16 @@
-import { Center, chakra, Heading, Text, VStack } from "@chakra-ui/react";
-import React, { FC, useEffect } from "react";
+import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  Heading,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import { identity } from "lodash";
+import React, { FC, useEffect, useRef } from "react";
 import { useCountdown } from "utils";
-
-const Mask = chakra(Center, {
-  baseStyle: {
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    bg: "white",
-    zIndex: "modal",
-    position: "absolute",
-  },
-});
 
 interface Props {
   isOpen: boolean;
@@ -21,24 +19,31 @@ interface Props {
 
 const GameCountdown: FC<Props> = ({ isOpen, onClose }) => {
   const countdown = useCountdown();
+  const cancelRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (isOpen) {
-      countdown.start(3000, onClose);
+      countdown.start(5000, onClose);
     }
   }, [isOpen]);
 
-  if (!isOpen) {
-    return null;
-  }
-
   return (
-    <Mask as={VStack}>
-      <Heading>Get Ready!</Heading>
-      <Text fontSize="lg">
-        The game with start in... {countdown.remaining.seconds || 3}
-      </Text>
-    </Mask>
+    <AlertDialog
+      isCentered
+      isOpen={isOpen}
+      onClose={identity}
+      leastDestructiveRef={cancelRef}
+    >
+      <AlertDialogOverlay>
+        <AlertDialogContent mx={4}>
+          <AlertDialogHeader textAlign="center">Get Ready!</AlertDialogHeader>
+          <AlertDialogBody as={VStack} pb={4}>
+            <Text fontSize="lg">The game will start in...</Text>
+            <Heading>{countdown.remaining.seconds}</Heading>
+          </AlertDialogBody>
+        </AlertDialogContent>
+      </AlertDialogOverlay>
+    </AlertDialog>
   );
 };
 
