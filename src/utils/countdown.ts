@@ -1,6 +1,6 @@
 import dayjs, { Dayjs } from "dayjs";
 import { identity, padStart } from "lodash";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useInterval } from "react-use";
 
 const pad = (n: number): string => padStart(n + "", 2, "0");
@@ -9,9 +9,9 @@ const calcRemaining = (expiration: Dayjs): number =>
   Math.max(expiration.diff(dayjs()), 0);
 
 const formatRemaining = (remaining: number): string =>
-  pad(Math.floor(remaining / 1000 / 60)) +
+  pad(Math.floor(remaining / 60000)) +
   ":" +
-  pad(Math.floor(remaining / 1000) % 60);
+  pad(Math.ceil(remaining / 1000) % 60);
 
 interface Countdown {
   remaining: {
@@ -25,27 +25,25 @@ interface Countdown {
 }
 
 export const useCountdown = (): Countdown => {
-  const isRunning = useRef(false);
   const expiration = useRef<Dayjs>(dayjs());
   const onCountdownEnd = useRef<() => void>(identity);
   const [remaining, setRemaining] = useState(calcRemaining(expiration.current));
 
   useInterval(
     () => {
-      setRemaining(calcRemaining(expiration.current));
+      const newRemaining = calcRemaining(expiration.current);
+
+      if (!newRemaining) {
+        onCountdownEnd.current();
+      }
+
+      setRemaining(newRemaining);
     },
     remaining > 0 ? 1000 : null
   );
 
-  useEffect(() => {
-    if (isRunning.current && !remaining) {
-      isRunning.current = false;
-      onCountdownEnd.current();
-    }
-  }, [remaining]);
-
   return {
-    isRunning: isRunning.current,
+    isRunning: remaining > 0,
     remaining: {
       millis: remaining,
       seconds: Math.round(remaining / 1000),
@@ -53,13 +51,9 @@ export const useCountdown = (): Countdown => {
     },
     start: (duration: number, callback: () => void = identity) => {
       onCountdownEnd.current = callback;
-      isRunning.current = true;
       expiration.current = dayjs().add(duration, "milliseconds");
       setRemaining(calcRemaining(expiration.current));
     },
-    stop: () => {
-      isRunning.current = false;
-      setRemaining(0);
-    },
+    stop: () => setRemaining(0),
   };
 };

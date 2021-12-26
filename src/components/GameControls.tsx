@@ -44,6 +44,7 @@ const GameControls: FC<Props> = ({
   onPlayClick = identity,
   onStopClick = identity,
   onTimerStart = identity,
+  onTimerStop = identity,
 }) => {
   const countdown = useCountdown();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -61,7 +62,7 @@ const GameControls: FC<Props> = ({
 
   const handleCountdownStart = () => {
     onClose();
-    countdown.start(duration);
+    countdown.start(duration, onTimerStop);
     onTimerStart();
   };
 
