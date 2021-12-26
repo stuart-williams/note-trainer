@@ -6,7 +6,7 @@ export const answerIndicatorState = atom<-1 | IBinary>({
   default: -1,
 });
 
-export const gameDurationState = atom<30000 | 60000 | 180000>({
+export const gameDurationState = atom<number>({
   key: "gameDurationState",
   default: 30000,
 });

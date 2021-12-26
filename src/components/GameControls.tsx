@@ -6,6 +6,8 @@ import {
   HStack,
   Icon,
   IconButton,
+  Radio,
+  RadioGroup,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -13,7 +15,7 @@ import GameCountdown from "components/GameCountdown";
 import { identity } from "lodash";
 import React, { FC } from "react";
 import { IoPlay as PlayIcon, IoStop as StopIcon } from "react-icons/io5";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { gameDurationState } from "state";
 import { IStats } from "types";
 import { useCountdown } from "utils";
@@ -48,7 +50,7 @@ const GameControls: FC<Props> = ({
 }) => {
   const countdown = useCountdown();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const duration = useRecoilValue(gameDurationState);
+  const [duration, setDuration] = useRecoilState(gameDurationState);
 
   const handlePlayClick = () => {
     onPlayClick();
@@ -69,16 +71,24 @@ const GameControls: FC<Props> = ({
   return (
     <>
       <Container as={HStack} align="stretch" maxW="container.sm">
+        <RadioGroup
+          value={duration}
+          onChange={(value) => setDuration(Number(value))}
+        >
+          <HStack h="100%">
+            <Radio value={30000}>30s</Radio>
+            <Radio value={60000}>1m</Radio>
+            <Radio value={180000}>3m</Radio>
+          </HStack>
+        </RadioGroup>
         <IconButton
           aria-label="Play"
           onClick={handlePlayClick}
           isDisabled={countdown.isRunning}
           icon={<Icon as={PlayIcon} boxSize="20px" />}
         />
-        <Center px={4} borderRadius="md" boxShadow="inner">
-          <Text fontSize="lg" fontFamily="sans-serif">
-            {countdown.remaining.formatted}
-          </Text>
+        <Center w="80px" px={4} borderRadius="md" boxShadow="inner">
+          <Text fontSize="lg">{countdown.remaining.formatted}</Text>
         </Center>
         <IconButton
           aria-label="Stop"
