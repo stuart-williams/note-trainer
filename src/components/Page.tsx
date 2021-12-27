@@ -1,19 +1,21 @@
 import { Flex, VStack } from "@chakra-ui/react";
+import RotateDevice from "components/RotateDevice";
 import React, { FC, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useTitle } from "react-use";
 import AppBar from "./AppBar";
 
 interface Props {
   title?: string;
+  landscape?: boolean;
+  hideAppBar?: boolean;
 }
 
-const Page: FC<Props> = ({ title, children }) => {
+const Page: FC<Props> = ({ title, landscape, hideAppBar, children }) => {
   const location = useLocation();
   const pageTitle = (title ? title + " - " : "") + "Note Trainer";
 
-  useEffect(() => {
-    document.title = pageTitle;
-  }, [pageTitle]);
+  useTitle(pageTitle);
 
   useEffect(() => {
     window.dataLayer.push({
@@ -25,8 +27,9 @@ const Page: FC<Props> = ({ title, children }) => {
 
   return (
     <>
-      <AppBar mb={2} title={title} />
-      <Flex as={VStack} flex="1 1 auto" align="stretch" pb={2}>
+      {landscape && <RotateDevice />}
+      {!hideAppBar && <AppBar title={title} />}
+      <Flex mt={2} as={VStack} flex="1 1 auto" align="stretch" pb={2}>
         {children}
       </Flex>
     </>

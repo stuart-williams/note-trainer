@@ -1,5 +1,6 @@
 import {
   Badge,
+  Button,
   Center,
   chakra,
   Container,
@@ -13,11 +14,11 @@ import {
 } from "@chakra-ui/react";
 import GameCountdown from "components/GameCountdown";
 import GameOver from "components/GameOver";
-import RotateDevice from "components/RotateDevice";
 import { gameDurations } from "config";
 import { identity } from "lodash";
 import React, { FC } from "react";
 import { IoPlay as PlayIcon, IoStop as StopIcon } from "react-icons/io5";
+import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { gameDurationState } from "state";
 import { IGameDuration, IStats } from "types";
@@ -91,7 +92,6 @@ const GameControls: FC<Props> = ({
 
   return (
     <>
-      <RotateDevice />
       <GameCountdown isOpen={isCountdownOpen} onClose={handleCountdownStart} />
       <GameOver
         isOpen={isGameOverOpen}
@@ -101,10 +101,8 @@ const GameControls: FC<Props> = ({
         You identified {stats.correct} notes correctly
       </GameOver>
       <Container
-        py={1}
         as={HStack}
         align="stretch"
-        overflowX="auto"
         maxW="container.sm"
         justifyContent="center"
       >
@@ -139,6 +137,9 @@ const GameControls: FC<Props> = ({
         <StatBadge colorScheme="red" borderColor="red.200">
           {stats.attempts - stats.correct}
         </StatBadge>
+        <Button as={Link} to="/" colorScheme="red" variant="outline">
+          Exit
+        </Button>
       </Container>
     </>
   );
