@@ -25,6 +25,7 @@ const Keyboard: FC<Props> = ({ onClick }) => {
     <Grid
       px={2}
       h="100%"
+      flex={1}
       gridGap={2}
       maxH="200px"
       templateColumns="repeat(7, 1fr)"
