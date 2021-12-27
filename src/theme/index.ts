@@ -6,7 +6,7 @@ const theme = extendTheme({
       "html, body, #root": {
         h: "100%",
         display: "flex",
-        overflowY: "hidden",
+        overflowX: "hidden",
         flexDirection: "column",
       },
       body: {
