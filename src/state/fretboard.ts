@@ -2,10 +2,10 @@ import { Note } from "@tonaljs/tonal";
 import * as config from "config";
 import { flatMap, repeat, times } from "lodash";
 import { selector } from "recoil";
-import { IFretboard, INote } from "types";
+import { IFretboardConfig, INote } from "types";
 import { fretboardIdState, leftHandedState } from "./settings";
 
-export const fretboardState = selector<IFretboard>({
+export const fretboardState = selector<IFretboardConfig>({
   key: "fretboardState",
   get: ({ get }) => config.fretboards[get(fretboardIdState)],
 });

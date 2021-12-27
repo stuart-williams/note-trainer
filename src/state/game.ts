@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { IBinary } from "types";
+import { IBinary, IGameDuration } from "types";
 import { localStorageEffect } from "utils";
 
 export const answerIndicatorState = atom<-1 | IBinary>({
@@ -7,7 +7,7 @@ export const answerIndicatorState = atom<-1 | IBinary>({
   default: -1,
 });
 
-export const gameDurationState = atom<number>({
+export const gameDurationState = atom<IGameDuration>({
   key: "gameDurationState",
   default: 30000,
   effects_UNSTABLE: [localStorageEffect()],

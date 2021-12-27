@@ -12,12 +12,13 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import GameCountdown from "components/GameCountdown";
+import { gameDurations } from "config";
 import { identity } from "lodash";
 import React, { FC } from "react";
 import { IoPlay as PlayIcon, IoStop as StopIcon } from "react-icons/io5";
 import { useRecoilState } from "recoil";
 import { gameDurationState } from "state";
-import { IStats } from "types";
+import { IGameDuration, IStats } from "types";
 import { useCountdown } from "utils";
 
 const StatBadge = chakra(Badge, {
@@ -72,14 +73,15 @@ const GameControls: FC<Props> = ({
     <>
       <Container as={HStack} align="stretch" maxW="container.sm">
         <RadioGroup
+          as={HStack}
           value={duration}
-          onChange={(value) => setDuration(Number(value))}
+          onChange={(value) => setDuration(Number(value) as IGameDuration)}
         >
-          <HStack h="100%">
-            <Radio value={30000}>30s</Radio>
-            <Radio value={60000}>1m</Radio>
-            <Radio value={180000}>3m</Radio>
-          </HStack>
+          {gameDurations.map(({ label, value }) => (
+            <Radio key={value} value={value}>
+              {label}
+            </Radio>
+          ))}
         </RadioGroup>
         <IconButton
           aria-label="Play"
