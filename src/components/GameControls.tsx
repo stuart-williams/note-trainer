@@ -101,10 +101,12 @@ const GameControls: FC<Props> = ({
         You identified {stats.correct} notes correctly
       </GameOver>
       <Container
+        py={1}
         as={HStack}
         align="stretch"
         overflowX="auto"
         maxW="container.sm"
+        justifyContent="center"
       >
         <RadioGroup
           as={HStack}
