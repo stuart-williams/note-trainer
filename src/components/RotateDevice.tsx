@@ -21,6 +21,11 @@ const RotateDevice: FC = () => {
 
   useEffect(() => {
     setOpen(isPortrait);
+
+    if (!isPortrait) {
+      // auto-hide the address bar
+      window.scrollTo(0, 1);
+    }
   }, [isPortrait]);
 
   return (

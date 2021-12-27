@@ -25,8 +25,8 @@ const AppBar: FC<Props> = ({ title = "Note Trainer", ...props }) => {
   const location = useLocation();
 
   return (
-    <Flex {...props} h="50px" boxShadow="sm" borderBottomWidth="1px" bg="white">
-      <Container as={HStack} maxW="container.xl">
+    <Flex {...props} boxShadow="sm" borderBottomWidth="1px" bg="white">
+      <Container h="50px" as={HStack} maxW="container.xl">
         {location.pathname !== "/" && (
           <IconButton
             to="/"
