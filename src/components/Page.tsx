@@ -25,7 +25,7 @@ const Page: FC<Props> = ({ title, children }) => {
 
   return (
     <>
-      <AppBar mb={4} title={title} />
+      <AppBar mb={2} title={title} />
       <Flex as={VStack} flex="1 1 auto" align="stretch" pb={2}>
         {children}
       </Flex>

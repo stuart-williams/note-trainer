@@ -51,7 +51,11 @@ const Keyboard: FC<Props> = ({ onClick, ...props }) => {
     const nameName = cache.current[midi] || toDisplayNoteName(midi, halfNotes);
     cache.current[midi] = nameName;
 
-    return <Text className="ReactPiano__NoteLabel">{nameName}</Text>;
+    return (
+      <Text className="ReactPiano__NoteLabel" userSelect="none">
+        {nameName}
+      </Text>
+    );
   };
 
   const handleClick = (midi: number) => onClick(midiToNoteName(midi));

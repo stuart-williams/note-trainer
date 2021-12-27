@@ -31,7 +31,7 @@ const GameOver: FC<Props> = ({
       leastDestructiveRef={cancelRef}
     >
       <AlertDialogOverlay>
-        <AlertDialogContent mx={4} textAlign="center">
+        <AlertDialogContent mx={4}>
           <AlertDialogHeader>Game Over</AlertDialogHeader>
           <AlertDialogBody>{children}</AlertDialogBody>
           <AlertDialogFooter>
@@ -46,7 +46,7 @@ const GameOver: FC<Props> = ({
             <Button
               ml={2}
               variant="outline"
-              colorScheme="green"
+              colorScheme="blue"
               onClick={onPlayAgainClick}
             >
               Play Again

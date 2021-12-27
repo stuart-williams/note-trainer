@@ -20,7 +20,7 @@ const NameTheNotePage: FC = () => {
       <GameControls stats={stats.game} onTimerStart={resetGame} />
       <Box position="relative">
         <Fretboard activeNotes={note ? [note] : []} />
-        <AnswerIndicator indicateStates={[0]} />
+        <AnswerIndicator />
       </Box>
       <Keyboard alignSelf="center" onClick={handleAnswer} />
     </>

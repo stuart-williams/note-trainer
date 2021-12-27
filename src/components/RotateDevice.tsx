@@ -8,6 +8,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { identity } from "lodash";
 import React, { FC, useEffect, useRef, useState } from "react";
 import { FcRotateToLandscape } from "react-icons/fc";
 import { useOrientation } from "react-use";
@@ -26,7 +27,7 @@ const RotateDevice: FC = () => {
     <AlertDialog
       isCentered
       isOpen={isOpen}
-      onClose={() => setOpen(false)}
+      onClose={identity}
       leastDestructiveRef={cancelRef}
     >
       <AlertDialogOverlay>

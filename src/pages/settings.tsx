@@ -3,8 +3,6 @@ import {
   FormControl,
   FormLabel,
   HStack,
-  Icon,
-  Link,
   Radio,
   RadioGroup,
   Select,
@@ -15,7 +13,6 @@ import Card from "components/Card";
 import * as config from "config";
 import { map } from "lodash";
 import React, { FC } from "react";
-import { HiOutlineExternalLink as ExternalLinkIcon } from "react-icons/hi";
 import { useRecoilState } from "recoil";
 import {
   fretboardIdState,
@@ -41,17 +38,6 @@ const FretboardSelect = () => {
           </option>
         ))}
       </Select>
-      <Link
-        mt={1}
-        isExternal
-        color="teal.500"
-        alignItems="center"
-        display="inline-flex"
-        href="https://github.com/stuart-williams/note-trainer/issues/new?assignees=&labels=&template=fretboard-request.md&title=Fretboard%20Request"
-      >
-        Request a fretboard
-        <Icon ml={1} as={ExternalLinkIcon} />
-      </Link>
     </FormControl>
   );
 };
