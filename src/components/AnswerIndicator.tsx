@@ -43,8 +43,8 @@ const AnswerIndicator: FC<Props> = ({ indicateStates = [0, 1] }) => {
     <Fade unmountOnExit in={indicateStates.includes(indicator as IBinary)}>
       <Mask bg={!ref.current ? "red.500" : "green.500"}>
         <Icon
-          boxSize={40}
           color="white"
+          boxSize="100px"
           as={!ref.current ? IncorrectIcon : CorrectIcon}
         />
       </Mask>

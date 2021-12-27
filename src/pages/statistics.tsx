@@ -63,9 +63,7 @@ const StatisticsPage: FC = () => {
         >
           <AlertDialogOverlay>
             <AlertDialogContent mx={4}>
-              <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                Reset Statistics
-              </AlertDialogHeader>
+              <AlertDialogHeader>Reset Statistics</AlertDialogHeader>
               <AlertDialogBody>
                 Are you sure? This can't be undone.
               </AlertDialogBody>

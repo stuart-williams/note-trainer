@@ -30,10 +30,8 @@ const RotateDevice: FC = () => {
       leastDestructiveRef={cancelRef}
     >
       <AlertDialogOverlay>
-        <AlertDialogContent mx={4}>
-          <AlertDialogHeader fontSize="xl" fontWeight="bold" textAlign="center">
-            Rotate Device
-          </AlertDialogHeader>
+        <AlertDialogContent mx={4} textAlign="center">
+          <AlertDialogHeader>Rotate Device</AlertDialogHeader>
           <AlertDialogBody as={VStack} pb={4}>
             <Icon as={FcRotateToLandscape} boxSize={20} />
             <Text>Rotate your device for a better experience</Text>

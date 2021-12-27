@@ -2,7 +2,6 @@ import { Box, Heading } from "@chakra-ui/react";
 import AnswerIndicator from "components/AnswerIndicator";
 import Fretboard from "components/Fretboard";
 import GameControls from "components/GameControls";
-import RotateDevice from "components/RotateDevice";
 import React, { FC, useMemo } from "react";
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import simplur from "simplur";
@@ -12,7 +11,7 @@ import {
   gameProxySelector,
   gameStatsState,
   targetNoteCountState,
-  targetNoteState
+  targetNoteState,
 } from "state/find-the-note";
 import { INote } from "types";
 import { toDisplayNoteName } from "utils";
@@ -36,12 +35,7 @@ const FindTheNotePage: FC = () => {
 
   return (
     <>
-      <RotateDevice />
-      <GameControls
-        onResetGame={resetGame}
-        correct={stats.game.correct}
-        attempts={stats.game.attempts}
-      />
+      <GameControls stats={stats.game} onTimerStart={resetGame} />
       <Box position="relative">
         <Fretboard activeNotes={activeNotes} onNoteClick={handleNoteClick} />
         <AnswerIndicator />

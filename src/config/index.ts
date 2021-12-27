@@ -1,6 +1,6 @@
-import { IFretboardId, IFretboard } from "types";
+import { IFretboardConfig, IFretboardId, IGameDurationConfig } from "types";
 
-export const fretboards: Record<IFretboardId, IFretboard> = {
+export const fretboards: Record<IFretboardId, IFretboardConfig> = {
   "standard-6": {
     h: 220,
     fretCount: 12,
@@ -65,3 +65,18 @@ export const fretboards: Record<IFretboardId, IFretboard> = {
     name: "5 String Bass - Standard Tuning",
   },
 };
+
+export const gameDurations: IGameDurationConfig[] = [
+  {
+    label: "30s",
+    value: 30000,
+  },
+  {
+    label: "1m",
+    value: 60000,
+  },
+  {
+    label: "3m",
+    value: 180000,
+  },
+];
