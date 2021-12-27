@@ -11,7 +11,7 @@ import {
 import Page from "./Page";
 
 const fallback = (
-  <Center>
+  <Center h="100%">
     <CircularProgress isIndeterminate />
   </Center>
 );

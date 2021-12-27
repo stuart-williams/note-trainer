@@ -32,7 +32,7 @@ const FretboardReference: FC = () => {
   return (
     <>
       <Fretboard activeNotes={activeNotes} />
-      <Keyboard alignSelf="center" onClick={setNoteFilter} />
+      <Keyboard onClick={setNoteFilter} />
     </>
   );
 };

@@ -1,29 +1,21 @@
-import { Midi, Note } from "@tonaljs/tonal";
-import { isNumber, repeat, times } from "lodash";
+import { Note } from "@tonaljs/tonal";
+import { repeat, times } from "lodash";
 import { IHalfNotes } from "types";
 
 export const getNoteNames = (): string[] =>
   times(12).map((sharps) => Note.simplify("C" + repeat("#", sharps)));
 
-export const midiToNoteName = (midiNumber: number): string =>
-  Midi.midiToNoteName(midiNumber, { sharps: true, pitchClass: true });
-
-export const isEnharmonicEquivalent = (a: string, b: string): boolean =>
-  a === b || Note.enharmonic(a) === b;
-
 export const toDisplayNoteName = (
-  note: string | number,
+  note: string,
   halfNotes: IHalfNotes = "sharps"
 ): string => {
-  const noteName = isNumber(note) ? midiToNoteName(note) : note;
-
-  if (Note.enharmonic(noteName) === noteName || halfNotes === "sharps") {
-    return noteName;
+  if (Note.enharmonic(note) === note || halfNotes === "sharps") {
+    return note;
   }
 
   if (halfNotes === "flats") {
-    return Note.enharmonic(noteName);
+    return Note.enharmonic(note);
   }
 
-  return Math.random() > 0.5 ? Note.enharmonic(noteName) : noteName;
+  return Math.random() > 0.5 ? Note.enharmonic(note) : note;
 };

@@ -68,27 +68,17 @@ const StatisticsPage: FC = () => {
                 Are you sure? This can't be undone.
               </AlertDialogBody>
               <AlertDialogFooter>
-                <Button
-                  ref={cancelRef}
-                  onClick={onClose}
-                  variant="outline"
-                  colorScheme="blue"
-                >
+                <Button ref={cancelRef} onClick={onClose} colorScheme="blue">
                   Cancel
                 </Button>
-                <Button
-                  ml={2}
-                  colorScheme="red"
-                  variant="outline"
-                  onClick={handleResetClick}
-                >
+                <Button ml={2} colorScheme="red" onClick={handleResetClick}>
                   Reset
                 </Button>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialogOverlay>
         </AlertDialog>
-        <Button onClick={onOpen} colorScheme="red" variant="outline">
+        <Button onClick={onOpen} colorScheme="red">
           Reset Statistics
         </Button>
       </VStack>

@@ -20,7 +20,11 @@ const Mask = chakra(Center, {
   },
 });
 
-const AnswerIndicator: FC = () => {
+interface Props {
+  indicateStates?: IBinary[];
+}
+
+const AnswerIndicator: FC<Props> = ({ indicateStates = [0, 1] }) => {
   const isMounted = useMountedState();
   const [indicator, setIndicator] = useRecoilState(answerIndicatorState);
 
@@ -36,11 +40,11 @@ const AnswerIndicator: FC = () => {
   }, [indicator]);
 
   return (
-    <Fade unmountOnExit in={indicator > -1}>
+    <Fade unmountOnExit in={indicateStates.includes(indicator as IBinary)}>
       <Mask bg={!ref.current ? "red.500" : "green.500"}>
         <Icon
           color="white"
-          boxSize="6em"
+          boxSize="100px"
           as={!ref.current ? IncorrectIcon : CorrectIcon}
         />
       </Mask>

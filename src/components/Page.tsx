@@ -18,9 +18,6 @@ const Page: FC<Props> = ({ title, landscape, hideAppBar, children }) => {
   useTitle(pageTitle);
 
   useEffect(() => {
-    // Auto-hide the address bar
-    window.scrollTo(0, 1);
-
     window.dataLayer.push({
       event: "virtualPageView",
       pageTitle,

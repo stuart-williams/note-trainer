@@ -35,20 +35,10 @@ const GameOver: FC<Props> = ({
           <AlertDialogHeader>Game Over</AlertDialogHeader>
           <AlertDialogBody>{children}</AlertDialogBody>
           <AlertDialogFooter>
-            <Button
-              ref={cancelRef}
-              onClick={onClose}
-              colorScheme="red"
-              variant="outline"
-            >
+            <Button ref={cancelRef} onClick={onClose} colorScheme="blue">
               Close
             </Button>
-            <Button
-              ml={2}
-              variant="outline"
-              colorScheme="blue"
-              onClick={onPlayAgainClick}
-            >
+            <Button ml={2} colorScheme="blue" onClick={onPlayAgainClick}>
               Play Again
             </Button>
           </AlertDialogFooter>
