@@ -1,29 +1,29 @@
-name: Deploy
+name: Build and Deploy
 
 on:
   workflow_dispatch:
   push:
     branches:
       - main
-    paths:
-      - "src/**"
-      - "public/**"
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Setup Environment
+        uses: actions/checkout@v2
+        uses: actions/setup-node@v1
         with:
           node-version: "14.x"
-      - uses: bahmutov/npm-install@v1
 
-      - run: npm run build
+      - name: Install
+        uses: bahmutov/npm-install@v1
 
-      - uses: JamesIves/github-pages-deploy-action@3.6.2
+      - name: Build 🔧
+        run: npm run build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
           branch: gh-pages
           folder: build
-          clean: true
-          persist-credentials: false
