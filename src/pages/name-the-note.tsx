@@ -3,7 +3,6 @@ import AnswerIndicator from "components/AnswerIndicator";
 import Fretboard from "components/Fretboard";
 import GameControls from "components/GameControls";
 import Keyboard from "components/Keyboard";
-import RotateDevice from "components/RotateDevice";
 import React, { FC } from "react";
 import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import { gameProxySelector, gameStatsState } from "state/name-the-note";
@@ -18,23 +17,7 @@ const NameTheNotePage: FC = () => {
 
   return (
     <>
-      <RotateDevice />
-      <GameControls
-        stats={stats.game}
-        onPlayClick={() => {
-          console.log("PLAY CLICK");
-        }}
-        onStopClick={() => {
-          console.log("STOP CLICK");
-        }}
-        onTimerStart={() => {
-          resetGame();
-          console.log("TIMER START");
-        }}
-        onTimerStop={() => {
-          console.log("TIMER STOP", stats.game.correct);
-        }}
-      />
+      <GameControls stats={stats.game} onTimerStart={resetGame} />
       <Box position="relative">
         <Fretboard activeNotes={note ? [note] : []} />
         <AnswerIndicator indicateStates={[0]} />

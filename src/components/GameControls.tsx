@@ -12,6 +12,8 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import GameCountdown from "components/GameCountdown";
+import GameOver from "components/GameOver";
+import RotateDevice from "components/RotateDevice";
 import { gameDurations } from "config";
 import { identity } from "lodash";
 import React, { FC } from "react";
@@ -49,13 +51,31 @@ const GameControls: FC<Props> = ({
   onTimerStart = identity,
   onTimerStop = identity,
 }) => {
-  const countdown = useCountdown({ onExpire: onTimerStop });
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const [duration, setDuration] = useRecoilState(gameDurationState);
+
+  const {
+    isOpen: isCountdownOpen,
+    onOpen: openCountdown,
+    onClose: closeCountdown,
+  } = useDisclosure();
+
+  const {
+    isOpen: isGameOverOpen,
+    onOpen: openGameOver,
+    onClose: closeGameOver,
+  } = useDisclosure();
+
+  const countdown = useCountdown({
+    onExpire: () => {
+      openGameOver();
+      onTimerStop();
+    },
+  });
 
   const handlePlayClick = () => {
     onPlayClick();
-    onOpen();
+    closeGameOver();
+    openCountdown();
   };
 
   const handleStopClick = () => {
@@ -64,13 +84,22 @@ const GameControls: FC<Props> = ({
   };
 
   const handleCountdownStart = () => {
-    onClose();
+    closeCountdown();
     countdown.start(duration);
     onTimerStart();
   };
 
   return (
     <>
+      <RotateDevice />
+      <GameCountdown isOpen={isCountdownOpen} onClose={handleCountdownStart} />
+      <GameOver
+        isOpen={isGameOverOpen}
+        onClose={closeGameOver}
+        onPlayAgainClick={handlePlayClick}
+      >
+        You identified {stats.correct} notes correctly
+      </GameOver>
       <Container as={HStack} align="stretch" maxW="container.sm">
         <RadioGroup
           as={HStack}
@@ -104,7 +133,6 @@ const GameControls: FC<Props> = ({
           {stats.attempts - stats.correct}
         </StatBadge>
       </Container>
-      <GameCountdown isOpen={isOpen} onClose={handleCountdownStart} />
     </>
   );
 };
