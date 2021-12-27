@@ -2,7 +2,12 @@ import { Center, CircularProgress } from "@chakra-ui/react";
 import loadable from "@loadable/component";
 import IndexPage from "pages";
 import React, { FC } from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
 import Page from "./Page";
 
 const fallback = (
@@ -73,38 +78,57 @@ const Statistics = loadable(
 
 const App: FC = () => (
   <Router>
-    <Switch>
-      <Route path="/name-the-note">
-        <Page title="Name the Note">
-          <NameTheNote />
-        </Page>
-      </Route>
-      <Route path="/find-the-note">
-        <Page title="Find the Note">
-          <FindTheNote />
-        </Page>
-      </Route>
-      <Route path="/fretboard-reference">
-        <Page title="Fretboard Reference">
-          <FretboardReference />
-        </Page>
-      </Route>
-      <Route path="/settings">
-        <Page title="Settings">
-          <Settings />
-        </Page>
-      </Route>
-      <Route path="/statistics">
-        <Page title="Statistics">
-          <Statistics />
-        </Page>
-      </Route>
-      <Route path="/">
-        <Page>
-          <IndexPage />
-        </Page>
-      </Route>
-    </Switch>
+    <Routes>
+      <Route
+        path="/name-the-note"
+        element={
+          <Page title="Name the Note">
+            <NameTheNote />
+          </Page>
+        }
+      />
+      <Route
+        path="/find-the-note"
+        element={
+          <Page title="Find the Note">
+            <FindTheNote />
+          </Page>
+        }
+      />
+      <Route
+        path="/fretboard-reference"
+        element={
+          <Page title="Fretboard Reference">
+            <FretboardReference />
+          </Page>
+        }
+      />
+      <Route
+        path="/settings"
+        element={
+          <Page title="Settings">
+            <Settings />
+          </Page>
+        }
+      />
+      <Route
+        path="/statistics"
+        element={
+          <Page title="Statistics">
+            <Statistics />
+          </Page>
+        }
+      />
+      <Route
+        path="/"
+        element={
+          <Page>
+            <IndexPage />
+          </Page>
+        }
+      />
+      <Route path="*" element={<Navigate replace to="/" />} />
+    </Routes>
   </Router>
 );
 
