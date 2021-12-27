@@ -1,5 +1,9 @@
-import { Center, chakra, Fade } from "@chakra-ui/react";
+import { Center, chakra, Fade, Icon } from "@chakra-ui/react";
 import React, { FC, useEffect, useRef } from "react";
+import {
+  AiOutlineCheck as CorrectIcon,
+  AiOutlineClose as IncorrectIcon,
+} from "react-icons/ai";
 import { useMountedState } from "react-use";
 import { useRecoilState } from "recoil";
 import { answerIndicatorState } from "state";
@@ -11,7 +15,7 @@ const Mask = chakra(Center, {
     left: 0,
     right: 0,
     bottom: 0,
-    opacity: 0.5,
+    opacity: 0.7,
     position: "absolute",
   },
 });
@@ -37,7 +41,13 @@ const AnswerIndicator: FC<Props> = ({ indicateStates = [0, 1] }) => {
 
   return (
     <Fade unmountOnExit in={indicateStates.includes(indicator as IBinary)}>
-      <Mask bg={!ref.current ? "red.500" : "green.500"} />
+      <Mask bg={!ref.current ? "red.500" : "green.500"}>
+        <Icon
+          color="white"
+          boxSize="100px"
+          as={!ref.current ? IncorrectIcon : CorrectIcon}
+        />
+      </Mask>
     </Fade>
   );
 };
