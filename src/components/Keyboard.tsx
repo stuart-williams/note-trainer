@@ -26,7 +26,6 @@ const KeyboardContainer = chakra(Container, {
 
 const Key = chakra(Button, {
   baseStyle: {
-    h: "100%",
     fontSize: "lg",
     borderWidth: "1px",
     borderColor: "gray.300",
@@ -53,11 +52,12 @@ const Keyboard: FC<Props> = ({ onClick }) => {
               <GridItem
                 key={row}
                 gridColumn={col + 1}
-                gridRow={notes.length === 1 ? "1 / 3" : 2 - row}
+                gridRow={notes.length < 2 ? "1 / 3" : 2 - row}
               >
                 <Key
                   isFullWidth
                   onClick={() => onClick(note)}
+                  h={notes.length < 2 ? "100%" : undefined}
                   color={note.includes("#") ? "white" : "black"}
                   colorScheme={note.includes("#") ? "ebony" : "ivory"}
                 >
