@@ -16,7 +16,7 @@ const columns = [
 
 const KeyboardContainer = chakra(Container, {
   baseStyle: {
-    px: 2,
+    px: 1,
     maxH: "200px",
     flex: "1 1 auto",
     alignSelf: "center",

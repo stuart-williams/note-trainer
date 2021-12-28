@@ -12,6 +12,7 @@ interface Props {
 
 const Page: FC<Props> = ({ title, landscape, children }) => {
   const location = useLocation();
+  const spacing = landscape ? 1 : 2;
   const pageTitle = (title ? title + " - " : "") + "Note Trainer";
 
   useTitle(pageTitle);
@@ -33,7 +34,14 @@ const Page: FC<Props> = ({ title, landscape, children }) => {
     <>
       {landscape && <RotateDevice />}
       <AppBar title={title} />
-      <Flex mt={2} as={VStack} flex="1 1 auto" align="stretch" pb={2}>
+      <Flex
+        as={VStack}
+        pb={spacing}
+        mt={spacing}
+        flex="1 1 auto"
+        align="stretch"
+        spacing={spacing}
+      >
         {children}
       </Flex>
     </>
