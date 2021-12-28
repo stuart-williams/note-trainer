@@ -14,6 +14,16 @@ const theme = extendTheme({
       },
     },
   },
+  colors: {
+    ebony: {
+      "500": "#222222",
+      "600": "#120b0d",
+    },
+    ivory: {
+      "500": "#ffffff",
+      "600": "#f2f2f2",
+    },
+  },
   components: {
     Modal: {
       baseStyle: {
