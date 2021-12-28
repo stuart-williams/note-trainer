@@ -91,7 +91,7 @@ const HalfNotes = () => {
 };
 
 export const SettingsPage: FC = () => (
-  <Container>
+  <Container mt={4}>
     <VStack as={Card} spacing={6}>
       <FretboardSelect />
       <LeftHanded />

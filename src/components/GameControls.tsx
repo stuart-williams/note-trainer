@@ -10,6 +10,7 @@ import {
   RadioGroup,
   Text,
   useDisclosure,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import GameCountdown from "components/GameCountdown";
 import GameOver from "components/GameOver";
@@ -50,6 +51,7 @@ const GameControls: FC<Props> = ({
   onTimerStart = identity,
   onTimerStop = identity,
 }) => {
+  const iconBtnSize = useBreakpointValue({ base: "sm", md: "md" });
   const [duration, setDuration] = useRecoilState(gameDurationState);
 
   const {
@@ -100,6 +102,7 @@ const GameControls: FC<Props> = ({
       </GameOver>
       <Container
         as={HStack}
+        spacing={1}
         align="stretch"
         maxW="container.sm"
         justifyContent="center"
@@ -117,6 +120,7 @@ const GameControls: FC<Props> = ({
         </RadioGroup>
         <IconButton
           aria-label="Play"
+          size={iconBtnSize}
           onClick={handlePlayClick}
           isDisabled={countdown.isRunning}
           icon={<Icon as={PlayIcon} boxSize="20px" />}
@@ -126,6 +130,7 @@ const GameControls: FC<Props> = ({
         </Center>
         <IconButton
           aria-label="Stop"
+          size={iconBtnSize}
           onClick={handleStopClick}
           icon={<Icon as={StopIcon} boxSize="20px" />}
         />
