@@ -2,7 +2,7 @@ import { IFretboardConfig, IFretboardId, IGameDurationConfig } from "types";
 
 export const fretboards: Record<IFretboardId, IFretboardConfig> = {
   "standard-6": {
-    h: 220,
+    h: 206,
     fretCount: 12,
     id: "standard-6",
     fretMarkers: [3, 5, 7, 9, 12],
@@ -11,7 +11,7 @@ export const fretboards: Record<IFretboardId, IFretboardConfig> = {
     tuning: ["E", "A", "D", "G", "B", "E"].reverse(),
   },
   "e-flat": {
-    h: 220,
+    h: 206,
     fretCount: 12,
     id: "e-flat",
     fretMarkers: [3, 5, 7, 9, 12],
@@ -20,7 +20,7 @@ export const fretboards: Record<IFretboardId, IFretboardConfig> = {
     tuning: ["D#", "G#", "C#", "F#", "A#", "D#"].reverse(),
   },
   "open-e": {
-    h: 220,
+    h: 206,
     fretCount: 12,
     id: "open-e",
     fretMarkers: [3, 5, 7, 9, 12],
@@ -29,7 +29,7 @@ export const fretboards: Record<IFretboardId, IFretboardConfig> = {
     tuning: ["E", "B", "E", "G#", "B", "E"].reverse(),
   },
   "dad-gad": {
-    h: 220,
+    h: 206,
     fretCount: 12,
     id: "dad-gad",
     fretMarkers: [3, 5, 7, 9, 12],
@@ -47,7 +47,7 @@ export const fretboards: Record<IFretboardId, IFretboardConfig> = {
     name: "7 String Guitar - Standard Tuning",
   },
   "standard-4": {
-    h: 200,
+    h: 188,
     fretCount: 12,
     id: "standard-4",
     fretMarkers: [3, 5, 7, 9, 12],
@@ -56,7 +56,7 @@ export const fretboards: Record<IFretboardId, IFretboardConfig> = {
     name: "4 String Bass - Standard Tuning",
   },
   "standard-5": {
-    h: 220,
+    h: 206,
     fretCount: 12,
     id: "standard-5",
     fretMarkers: [3, 5, 7, 9, 12],
