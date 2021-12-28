@@ -34,8 +34,8 @@ const FretboardReference: FC = () => {
     <VStack
       align="stretch"
       flex="1 1 auto"
-      mt={{ base: 1, md: 2 }}
-      spacing={{ base: 1, md: 2 }}
+      mt={{ base: 1, lg: 2 }}
+      spacing={{ base: 1, lg: 2 }}
     >
       <Fretboard activeNotes={activeNotes} />
       <Keyboard onClick={setNoteFilter} />

@@ -45,7 +45,7 @@ const Keyboard: FC<Props> = ({ onClick }) => {
     <KeyboardContainer>
       <Grid
         h="100%"
-        gridGap={{ base: 1, md: 2 }}
+        gridGap={{ base: 1, lg: 2 }}
         templateColumns="repeat(7, 1fr)"
       >
         {columns.map((notes, col) => (

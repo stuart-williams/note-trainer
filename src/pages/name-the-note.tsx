@@ -19,8 +19,8 @@ const NameTheNotePage: FC = () => {
     <VStack
       align="stretch"
       flex="1 1 auto"
-      my={{ base: 1, md: 2 }}
-      spacing={{ base: 1, md: 2 }}
+      my={{ base: 1, lg: 2 }}
+      spacing={{ base: 1, lg: 2 }}
     >
       <GameControls stats={stats.game} onTimerStart={resetGame} />
       <Box position="relative">
