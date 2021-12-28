@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "./static/js/main.89db2b3b.js",
+    "main.js": "./static/js/main.b6b2dfc9.js",
     "name-the-note.js": "./static/js/name-the-note.f9230560.chunk.js",
     "find-the-note.js": "./static/js/find-the-note.ccacbd13.chunk.js",
     "fretboard-reference.js": "./static/js/fretboard-reference.32689ac3.chunk.js",
@@ -11,7 +11,7 @@
     "static/js/612.d99f4917.chunk.js": "./static/js/612.d99f4917.chunk.js",
     "static/js/880.5988c312.chunk.js": "./static/js/880.5988c312.chunk.js",
     "index.html": "./index.html",
-    "main.89db2b3b.js.map": "./static/js/main.89db2b3b.js.map",
+    "main.b6b2dfc9.js.map": "./static/js/main.b6b2dfc9.js.map",
     "name-the-note.f9230560.chunk.js.map": "./static/js/name-the-note.f9230560.chunk.js.map",
     "find-the-note.ccacbd13.chunk.js.map": "./static/js/find-the-note.ccacbd13.chunk.js.map",
     "fretboard-reference.32689ac3.chunk.js.map": "./static/js/fretboard-reference.32689ac3.chunk.js.map",
@@ -23,6 +23,6 @@
     "880.5988c312.chunk.js.map": "./static/js/880.5988c312.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.89db2b3b.js"
+    "static/js/main.b6b2dfc9.js"
   ]
 }
