@@ -8,10 +8,9 @@ import AppBar from "./AppBar";
 interface Props {
   title?: string;
   landscape?: boolean;
-  hideAppBar?: boolean;
 }
 
-const Page: FC<Props> = ({ title, landscape, hideAppBar, children }) => {
+const Page: FC<Props> = ({ title, landscape, children }) => {
   const location = useLocation();
   const pageTitle = (title ? title + " - " : "") + "Note Trainer";
 
@@ -28,7 +27,7 @@ const Page: FC<Props> = ({ title, landscape, hideAppBar, children }) => {
   return (
     <>
       {landscape && <RotateDevice />}
-      {!hideAppBar && <AppBar title={title} />}
+      <AppBar title={title} />
       <Flex mt={2} as={VStack} flex="1 1 auto" align="stretch" pb={2}>
         {children}
       </Flex>

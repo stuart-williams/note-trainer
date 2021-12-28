@@ -16,12 +16,7 @@ import GameOver from "components/GameOver";
 import { gameDurations } from "config";
 import { identity } from "lodash";
 import React, { FC } from "react";
-import {
-  IoArrowBackOutline as BackIcon,
-  IoPlay as PlayIcon,
-  IoStop as StopIcon,
-} from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { IoPlay as PlayIcon, IoStop as StopIcon } from "react-icons/io5";
 import { useRecoilState } from "recoil";
 import { gameDurationState } from "state";
 import { IGameDuration, IStats } from "types";
@@ -109,13 +104,6 @@ const GameControls: FC<Props> = ({
         maxW="container.sm"
         justifyContent="center"
       >
-        <IconButton
-          to="/"
-          as={Link}
-          variant="ghost"
-          aria-label="Back"
-          icon={<Icon as={BackIcon} boxSize="20px" />}
-        />
         <RadioGroup
           as={HStack}
           value={duration}

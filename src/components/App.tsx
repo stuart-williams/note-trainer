@@ -82,7 +82,7 @@ const App: FC = () => (
       <Route
         path="/name-the-note"
         element={
-          <Page title="Name the Note" landscape hideAppBar>
+          <Page title="Name the Note" landscape>
             <NameTheNote />
           </Page>
         }
@@ -90,7 +90,7 @@ const App: FC = () => (
       <Route
         path="/find-the-note"
         element={
-          <Page title="Find the Note" landscape hideAppBar>
+          <Page title="Find the Note" landscape>
             <FindTheNote />
           </Page>
         }

@@ -17,7 +17,6 @@ const columns = [
 const KeyboardContainer = chakra(Container, {
   baseStyle: {
     px: 2,
-    minH: "150px",
     maxH: "200px",
     flex: "1 1 auto",
     alignSelf: "center",
@@ -27,11 +26,9 @@ const KeyboardContainer = chakra(Container, {
 
 const Key = chakra(Button, {
   baseStyle: {
-    pb: 4,
     h: "100%",
     fontSize: "lg",
     borderWidth: "1px",
-    alignItems: "flex-end",
     borderColor: "gray.300",
   },
 });
