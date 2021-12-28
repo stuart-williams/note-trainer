@@ -4,7 +4,7 @@ import React, { FC } from "react";
 import { Link } from "react-router-dom";
 
 const IndexPage: FC = () => (
-  <Container mt={4}>
+  <Container my={4}>
     <VStack as={Card} align="stretch">
       <Button as={Link} colorScheme="blue" to="/name-the-note">
         Name the Note

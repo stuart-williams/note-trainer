@@ -37,7 +37,7 @@ const FindTheNotePage: FC = () => {
     <VStack
       align="stretch"
       flex="1 1 auto"
-      mt={{ base: 1, md: 2 }}
+      my={{ base: 1, md: 2 }}
       spacing={{ base: 1, md: 2 }}
     >
       <GameControls stats={stats.game} onTimerStart={resetGame} />

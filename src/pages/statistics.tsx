@@ -33,7 +33,7 @@ const StatisticsPage: FC = () => {
   };
 
   return (
-    <Container mt={4}>
+    <Container my={4}>
       <VStack as={Card} align="stretch">
         <Table variant="simple">
           <Thead>
