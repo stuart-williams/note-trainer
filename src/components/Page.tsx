@@ -22,6 +22,11 @@ const Page: FC<Props> = ({ title, landscape, children }) => {
       pageTitle,
       pageLocation: window.location.href,
     });
+
+    setTimeout(() => {
+      // Hide mobile address bar
+      window.scrollTo(0, 1);
+    }, 0);
   }, [location.pathname]);
 
   return (
