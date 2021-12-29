@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.js": "./static/js/main.f0841d03.js",
+    "main.js": "./static/js/main.9f4b3c8c.js",
     "name-the-note.js": "./static/js/name-the-note.11585967.chunk.js",
     "find-the-note.js": "./static/js/find-the-note.0323fedc.chunk.js",
-    "fretboard-reference.js": "./static/js/fretboard-reference.dcdebc01.chunk.js",
+    "fretboard-reference.js": "./static/js/fretboard-reference.1ecc380a.chunk.js",
     "settings.js": "./static/js/settings.8080233c.chunk.js",
     "statistics.js": "./static/js/statistics.08cac525.chunk.js",
     "static/js/142.891ba515.chunk.js": "./static/js/142.891ba515.chunk.js",
@@ -11,10 +11,10 @@
     "static/js/612.d99f4917.chunk.js": "./static/js/612.d99f4917.chunk.js",
     "static/js/880.6a35bc8f.chunk.js": "./static/js/880.6a35bc8f.chunk.js",
     "index.html": "./index.html",
-    "main.f0841d03.js.map": "./static/js/main.f0841d03.js.map",
+    "main.9f4b3c8c.js.map": "./static/js/main.9f4b3c8c.js.map",
     "name-the-note.11585967.chunk.js.map": "./static/js/name-the-note.11585967.chunk.js.map",
     "find-the-note.0323fedc.chunk.js.map": "./static/js/find-the-note.0323fedc.chunk.js.map",
-    "fretboard-reference.dcdebc01.chunk.js.map": "./static/js/fretboard-reference.dcdebc01.chunk.js.map",
+    "fretboard-reference.1ecc380a.chunk.js.map": "./static/js/fretboard-reference.1ecc380a.chunk.js.map",
     "settings.8080233c.chunk.js.map": "./static/js/settings.8080233c.chunk.js.map",
     "statistics.08cac525.chunk.js.map": "./static/js/statistics.08cac525.chunk.js.map",
     "142.891ba515.chunk.js.map": "./static/js/142.891ba515.chunk.js.map",
@@ -23,6 +23,6 @@
     "880.6a35bc8f.chunk.js.map": "./static/js/880.6a35bc8f.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.f0841d03.js"
+    "static/js/main.9f4b3c8c.js"
   ]
 }
